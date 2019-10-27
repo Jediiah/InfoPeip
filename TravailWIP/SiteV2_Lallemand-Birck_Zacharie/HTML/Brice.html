@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Language" content="fr" />
+        <title>TetrisSite - ISN2019</title>
+        <link rel='stylesheet' type='text/css' href="..\STYLE\laFeuuille.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <header id="header">
+    	    <a href="TetrisSite.html" title="Home">
+                <img src="../Img/tetris-logo.png" alt="Tetris" width="350px">
+            </a>
+        </header>
+  
+        <nav id="menu">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr>
+                    <td>&nbsp;</td>
+                    <td width="1" align="center"><a href="TetrisSite.html">Acceuil</a></td>
+                    <td>&nbsp;</td>
+                    <td width="1" align="center"><a href="Nidhal.html">Nidhal</a></td>
+                    <td>&nbsp;</td>
+                    <td width="1" align="center">Brice</td>
+                    <td>&nbsp;</td>
+                    <td width="1" align="center"><a href="Zacharie.html">Zacharie</a></td> 
+                    <td>&nbsp;</td>
+                    <!-- icon GitHub (en dessous) -->
+                    <td width="1" align="center"><a target="_blank" href="https://github.com/Jediiah/Tetris-ISN-2019"><span style="font-size: 2em; color: purple;"><i class="fab fa-github"></i></span></a></td>
+                    <td>&nbsp;</td>
+                </tr></tbody>
+            </table>  
+        </nav>
+ 
+
+    <span id="content">
+    
+        <div style="float:left; width:700px; margin-right:16px; margin-bottom:16px;"><span class="title">Le dossier de Brice</span><br><br><br>
+<br>
+Vous voici sur la page où j'explique le fonctionnement général du tableau, des pièces et de leurs mouvements. Comme dis <a href="TetrisSite.html" >plus tôt</a> le fonctionnement général du jeu à été travaillé par Zacharie et moi. 
+
+<br>
+
+<br>
+<br>
+<br>
+&nbsp; J'expliquererais donc le principe deriere le mouvement des blocs et le tableau de jeux qui sont les fondement du jeux sans m'attarder sur les CLASSE qui seront expliquer  <a href="Zacharie.html" >ici</a>
+<br>
+
+<br>
+<br>
+<br>
+<br><span id="tableau"></span>
+&nbsp; &nbsp; &nbsp; Le tableau est un 10*20 décroissant (19,0 en haut a gauche),il represente l'air de jeu.Les case sont codée par (0,Rouje,Jaune,Bleu,Violet,Rose...) 0 reprèsentant une case vide.
+<ul>
+    <li><span id="pieces"></span>
+        Une forme est un ensemble de 4 carrés,chaques carrés possède ses propre coordonnées.
+	Le déplacement correspond donc a une actuallisation simultanée des coordonnées des 4 carrés.
+        <br>
+        Chaque forme possède aussi sa propre couleur qui est recensée dans le tableau.
+        <br>
+        
+    </li>
+    <br>
+    <li><span id="rotation"></span>
+    Chaque forme possède plusieur état (de 1 à 4) correspondant aux position prise lors de la rotation,
+ces etat rassembler dans un dictionnaire qui contien leurs coordonnées basique,la rotation est gérée par un event qui apllique la fonction rotation au bloc.
+    <br>
+    
+    <br>
+    <br>
+ Le déplacement des bloc se séparent en deux partie:
+    <br>
+    <ul>
+        <li>un déplacement vertical correspondant a y=y-1 sur chaque carré si le deplacement est possible(pas de bloc en dessous ou limite du tableau)</li>
+        <li>Un déplacement horizontale gérer par des évent ,une fois l'event activer la piece se deplace d'une case sur la gauche ou sur la droite (sauf s'il y a une autre piece ou un mur)</li>
+        </ul>
+<ul>L'explication des classes et des fonction sont trouvable sur la partie de <a href="Zacharie.html#content" >Zach</a>
+<br>
+<img src="../Img/resumer2.png" alt="center">
+
+</div>
+</span>
+    
+    
+    <aside id="side">
+
+        <div id="Sommaire" class="Sommaire">
+            <div>
+                <h2>Sommaire</h2>
+            </div>
+            <ul>
+                <li><a href="#tableau">Tableau</a></li>
+                <li><a href="#pieces">Pièces</a></li>
+                <li><a href="#rotation">Rotations</a></li>
+                <li><a href="#resume">Résumé</a></li>
+            </ul>
+        </div>
+                  
+    </aside>
+    
+    
+    </body>
+</html>

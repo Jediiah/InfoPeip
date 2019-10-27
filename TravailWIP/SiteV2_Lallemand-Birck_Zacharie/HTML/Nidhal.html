@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="fr">
+    <title>TetrisSite - ISN2019</title>
+    <link rel="stylesheet" type="text/css" href="..\STYLE\laFeuuille.css">
+    <script defer="defer" src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header id="header"> <a href="TetrisSite.html" title="Home"> <img src="../Img/tetris-logo.png"
+          alt="Tetris" width="350px"> </a> </header>
+    <nav id="menu">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+          <tr>
+            <td>&nbsp;</td>
+            <td width="1" align="center"><a href="TetrisSite.html">Acceuil</a></td>
+            <td>&nbsp;</td>
+            <td width="1" align="center">Nidhal</td>
+            <td>&nbsp;</td>
+            <td width="1" align="center"><a href="Brice.html">Brice</a></td>
+            <td>&nbsp;</td>
+            <td width="1" align="center"><a href="Zacharie.html">Zacharie</a></td>
+            <td>&nbsp;</td>
+            <!-- icon GitHub (en dessous) -->
+            <td width="1" align="center"><a target="_blank" href="https://github.com/Jediiah/Tetris-ISN-2019"><span
+                  style="font-size: 2em; color: purple;"><i class="fab fa-github"></i></span></a><br>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </nav>
+    <br>
+    <span id="content">
+      <div style="float:left; width:700px; margin-right:16px; margin-bottom:16px;"><span
+          class="title">Le dossier de Nidhal</span><br>
+        <br>
+        <br>
+        <p style="margin-bottom: 0cm">Vous voici maintenant dans le cœur du
+          programme. Vous y trouverez des explications allant du menu jusqu'à
+          l'écran de jeu.</p>
+        <p style="margin-bottom: 0cm"><br>
+        </p>
+        <p style="margin-bottom: 0cm">Le fichier programme TetrisJeu commence
+          par une fonction qui va permettre de générer aléatoirement un des
+          Tetriminos possible grâce à la commande <span class="code" >random()</span>. Vous trouverez
+          d'avantage d'explication à propos du module <span class="code">CLASSES</span> dans l'onglet
+          <a href="Zacharie.html">Zacharie</a>.</p>
+        <p style="margin-bottom: 0cm"><br>
+        </p>
+        <p style="margin-bottom: 0cm">L'une des variables les plus essentielles
+          dans la réalisation de ce menu est sans aucun doute le temps. </p>
+        <p style="margin-bottom: 0cm" align="center"><b>time1 =
+            pygame.time.get_ticks() (l.172)</b></p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left">La
+          variable <span class="code">time1</span> donne le temps instantanné depuis le lancement du
+          programme.</p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left"><br>
+        </p>
+        <p style="margin-bottom: 0cm" align="center"><b>time =
+            pygame.time.get_ticks() (l.37)</b></p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left">La
+          variable time quant à elle va nous servir de repère afin de faire
+          clignoter un bouton.</p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left"><u>La
+            fonction <span class="code">timer()</span></u>:</p>
+        <p style="margin-bottom: 0cm" align="center"><b>def timer(time,
+            time1):</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>if
+            time1&lt;time+500:</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>z=1</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>else:</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>z=2</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>return(z)</b></p>
+        <p style="margin-bottom: 0cm" align="center"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left">Cette
+          fonction permet de faire clignoter un bouton lorsqu'il est
+          séléctionner par l'utilisateur. </p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal" align="left">Le
+          clignotement est en réalité une succession de deux images placées
+          dans une liste, affichées successivement à intervalles de temps de une
+          demi-seconde entre deux images. </p>
+        <p style="margin-bottom: 0cm" align="center"><br>
+        </p>
+        <p style="margin-bottom: 0cm" align="center"> <b>if nbr_touch
+            == 1:</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>screen.blit(quit_list[timer(time,
+            time1)], bt2)</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>if
+            time+1500&lt;time1:</b></p>
+        <p style="margin-bottom: 0cm" align="center"> <b>time=time1</b></p>
+        <p style="margin-bottom: 0cm" align="center"> </p>
+        <p style="margin-bottom: 0cm">Comme on peut le voir dans l'exemple,
+          la variable time va permettre d'indiquer au bout de combien de temps
+          l'image est affichée. Si cette durée dépasse de plus de une seconde
+          et demi, la variable <span class="code">time</span> prend la valeur de <span class="code">time</span>. </p>
+        <p style="margin-bottom: 0cm"><br>
+        </p>
+        <p style="margin-bottom: 0cm"><br>
+        </p>
+        <p style="margin-bottom: 0cm">Chaque image représentant un bouton
+          possède 3 modèle:</p>
+        <ul>
+          <ul>
+            <li>
+              <p style="margin-bottom: 0cm">x1&gt;celui lorsque le bouton n'est
+                pas séléctionné ( standart )</p>
+            </li>
+            <li>
+              <p style="margin-bottom: 0cm">x2&gt;lorsque le bouton est
+                séléctionné ( gras, souligné et transparent ). Ces images sont
+                placées dans une liste </p>
+            </li>
+          </ul>
+        </ul>
+        <p style="margin-bottom: 0cm"><br>
+        </p>
+        <p style="margin-bottom: 0cm">La séléction d'un bouton s'effectue
+          avec la variable <b>nbrtouch.</b><span style="font-weight: normal">
+            Chaque bouton est associé à un numéro: </span>
+        </p>
+        <ul>
+          <ul>
+            <ul>
+              <li>
+                <p style="margin-bottom: 0cm; font-weight: normal">Play:
+                  nbrtouch = 1</p>
+              </li>
+            </ul>
+          </ul>
+        </ul>
+        <ul>
+          <ul>
+            <ul>
+              <li>
+                <p style="margin-bottom: 0cm; font-weight: normal">Option:
+                  nbrtouch = 2</p>
+              </li>
+              <li>
+                <p style="margin-bottom: 0cm; font-weight: normal">Quitter:
+                  nbrtouch = 3</p>
+              </li>
+            </ul>
+          </ul>
+        </ul>
+        <p style="margin-bottom: 0cm; font-weight: normal"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal">Dans le menu
+          option, le principe est le même avec:</p>
+        <ul>
+          <ul>
+            <ul>
+              <li>
+                <p style="margin-bottom: 0cm">Musique: nbrtouch = 1</p>
+              </li>
+              <li>
+                <p style="margin-bottom: 0cm; font-weight: normal">Fond d'écran:
+                  nbrtouch = 2</p>
+              </li>
+            </ul>
+          </ul>
+        </ul>
+        <p style="margin-bottom: 0cm; font-weight: normal"><br>
+        </p>
+        <p style="margin-bottom: 0cm; font-weight: normal">Deux autres
+          variables permettent de choisir horisontallement:</p>
+        <ul>
+          <ul>
+            <ul>
+              <li>
+                <p style="margin-bottom: 0cm">Musique: choix1</p>
+              </li>
+              <li>
+                <p style="margin-bottom: 0cm; font-weight: normal">Fond d'écran:
+                  choix2 </p>
+              </li>
+            </ul>
+          </ul>
+        </ul>
+        <p style="margin-bottom: 0cm; font-weight: normal"><br>
+        </p>
+        <p style="margin-bottom: 0cm">Les variables de type 'choix' sont
+          utilisées afin de déterminer les musiques et les fonds d'écran
+          utilisés pendant le jeu grâce à des listes. </p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <span id="tableau"></span>&nbsp; </div>
+    </span>
+    <aside id="side">
+    </aside>
+  </body>
+</html>
