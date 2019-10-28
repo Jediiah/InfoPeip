@@ -12,7 +12,7 @@
     <body>
         <header id="header">
     	    <a href="TetrisSite.html" title="Home">
-                <img src="tetris-logo.png" alt="Tetris" width="350px">
+                <img src="../Img/tetris-logo.png" alt="Tetris" width="350px">
             </a>
         </header>
   

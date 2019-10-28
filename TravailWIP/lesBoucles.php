@@ -121,6 +121,11 @@ function Ex2($tablo, $valeurCherche){
     }
 
 
-Ex2(GenereTablo(5), rand(0, 10));
+$tablo = array(12, 13, 14);
+$a = $tablo[0]; $b = $tablo[1]; $c = $tablo[2];
 
+var_dump($tablo);
+var_dump($a);
+var_dump($b);
+var_dump($c);
 ?>
