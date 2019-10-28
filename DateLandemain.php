@@ -1,9 +1,9 @@
 
 <?php
 
+function separe_date($dateStr){
 /* Transforme la date obtenue sous forme de chaine de caractère en
     trois entiers correspondant à l'année, au moi et au jour. */
-function separe_date($dateStr){
     $annee = "";
     $mois = "";
     $jour = "";
@@ -28,7 +28,9 @@ function separe_date($dateStr){
     return(array($annee, $mois, $jour));
 }
 
+
 function affiche_date($annee, $mois, $jour){
+/* Just pour faire joli */ 
     $moisCorrespond = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     $moisAffiche = $moisCorrespond[$mois-1];
     if ($jour == 1){
@@ -37,13 +39,14 @@ function affiche_date($annee, $mois, $jour){
     echo "<br> Date donnée : $jour $moisAffiche $annee";
 }
 
-/* fonction demain(array(anne, moi, jour)) 
+
+
+function landemain($annee, $mois, $jour){
+/* fonction landedemain(array(anne, moi, jour)) 
     test bisextile
     test 31 ou 30 joue (exeption février)
     tests des 2 exeption ; 31 decembre et 28/29 février
     application du +1jour */
-
-function landemain($annee, $mois, $jour){
     $estBissextile = ($annee%4 == 0 and $annee%100 != 0) or ($annee%400 == 0);
     $longMois = array(31, '', 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
@@ -71,7 +74,12 @@ function landemain($annee, $mois, $jour){
     affiche_date($annee, $mois, $jour);
 }
 
-/* explique formulaire date */
+
+/* Le formulaire utilisé est de type "date" 
+    Puisque ce foemulaire est spécifique à la saisie de dates 
+    ainsi aucun 29 février 2019 ou 32 décembre ne peut être entré. 
+    Cependant le résultat est de la forme str(aaa/mm/jj) 
+    d'où le besoin de la fonction separe-date()  */
 
     if(!isset($_POST['date'])) {
     ?>
