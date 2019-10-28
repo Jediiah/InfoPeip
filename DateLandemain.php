@@ -86,7 +86,7 @@ function landemain($annee, $mois, $jour){
 
     <form method="POST">
         <p>Quel jour on est ? : <input type="date" name="date" /></p>
-        <p><input type="submit" value="CALCUUUULE"></p>
+        <p><input type="submit" value="Et demain ?"></p>
     </form>
 
     
@@ -98,7 +98,7 @@ function landemain($annee, $mois, $jour){
 
         <form method="POST">
             <p>Premier nombre : <input type="date" name="date" /></p>
-            <p><input type="submit" value="CALCUUUULE"></p>
+            <p><input type="submit" value="Et demain ?"></p>
         </form>
 
         <?php
