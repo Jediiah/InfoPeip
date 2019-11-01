@@ -3,11 +3,14 @@
 
 <?php
 
-$sujets = file('Sujets.ini');
-$verbes = file('Verbes.ini');
-$complements = file('Co.ini');
+/* creer un liste de tous les éléments dans le fichier */
+$sujets = file('../CadavreExquis/Sujets.ini');
+$verbes = file('../CadavreExquis/Verbes.ini');
+$complements = file('../CadavreExquis/Co.ini');
 
 function Cadavre(){
+    /* Une phrase simple : sujet verbe complément 
+        chasue élément étant pris au hasard dans la liste correspondante. */ 
     global $sujets, $verbes, $complements;
 
     $sujet = $sujets[random_int(0, count($sujets)-1)];
@@ -18,7 +21,7 @@ function Cadavre(){
 }
 
 
-
+/* On entre le nombre de phrase à générer */ 
 if(!isset($_POST['nbCadavres'])) {
     ?>
 

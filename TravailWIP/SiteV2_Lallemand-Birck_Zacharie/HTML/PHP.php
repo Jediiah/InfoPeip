@@ -123,6 +123,14 @@
             }
             ?>
 
+            <br><br><br><br>
+            <strong> -----  Calcul des racines d'une équation du second degrés   ---------------</strong>  <br><br><br>
+
+            <?php
+                
+                include('../CadavreExquis/cadavreExquis.php');
+
+            ?>
 
         </div>
     
