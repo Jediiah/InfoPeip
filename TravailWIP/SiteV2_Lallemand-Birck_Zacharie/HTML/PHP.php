@@ -26,7 +26,7 @@
                     <td>&nbsp;</td>
                     <td width="1" align="center"><a href="Brice.html">Brice</a></td>
                     <td>&nbsp;</td>
-                    <td width="1" align="center">Zacharie</td>
+                    <td width="1" align="center"><a href="Zacharie.html">Zacharie</a></td>
                     <td>&nbsp;</td> 
                     <td width="1" align="center"><a href="PHP.php">PHP</a></td>
                     <td>&nbsp;</td>
