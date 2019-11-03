@@ -3,7 +3,7 @@
 
 function separe_date($dateStr){
 /* Transforme la date obtenue sous forme de chaine de caractère en
-    trois entiers correspondant à l'année, au moi et au jour. */
+    trois entiers correspondant à l'année, au mois et au jour. */
     $annee = "";
     $mois = "";
     $jour = "";
