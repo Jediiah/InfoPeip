@@ -36,7 +36,7 @@ function affiche_date($annee, $mois, $jour){
     if ($jour == 1){
         $jour = '1er';
     }
-    echo "<br> Date donnée : $jour $moisAffiche $annee";
+    echo "$jour $moisAffiche $annee";
 }
 
 
@@ -104,7 +104,9 @@ function landemain($annee, $mois, $jour){
         <?php
         unset($_POST["date"]);
         $dateSepare = separe_date($date);
+        echo "<br> Date donnée : ";
         affiche_date(...$dateSepare);
+        echo "<br> Date du Landemain : ";
         landemain(...$dateSepare);
     }
     ?>

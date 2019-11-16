@@ -70,7 +70,7 @@
                 
                         <form method="POST">
                             <p>Nombre de Cadavres : <input type="int" name="nbCadavres" min=0 max=10000/></p>
-                            <p><input type="submit" value="Encore"></p>
+                            <p><input type="submit" value="Ok"></p>
                         </form>
                 
                     
@@ -83,7 +83,7 @@
                 
                         <form method="POST">
                             <p>Nombre de Cadavres : <input type="int" name="nbCadavres" /></p>
-                            <p><input type="submit" value="Encore"></p>
+                            <p><input type="submit" value="Ok"></p>
                         </form>
                 
                         <?php
