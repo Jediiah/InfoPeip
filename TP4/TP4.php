@@ -26,7 +26,7 @@ function compare_temps($temps1, $temps2){
 </skieurs>
 
 En plus de sa compatibilité avec PHP grace à SimpleXML ce format permet d'organiser parfaitement 
-le classement.
+le classementet le fichier texte est facilement lisible.
 https://www.w3schools.com/Php/php_ref_simplexml.asp
 */
 
