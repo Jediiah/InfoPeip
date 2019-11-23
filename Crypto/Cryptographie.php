@@ -4,7 +4,11 @@
 <?php
 
 function genere_alphabet($decalage = 0, $cle = NULL, $affAlpha = FALSE){
-    /* Fonction qui génére un alphabet avec le décalage demandé ou avec une clé de vigenère. */
+    /* 
+    *   Fonction qui génére un alphabet avec le décalage demandé ou avec une clé de vigenère. 
+    *   @param int $decalage
+    *
+    */
     $alphabetCrypte = array();
     if($cle == NULL){ # Si on a donné un décallage et non une clé
         $decalage %= 26; # le décalage est mis au modulo 26 
@@ -198,9 +202,10 @@ echo"<br>";
 
 function ex_4($phrase, $cleVigenere, $affAlpha){
     $alphabetsVigenere = array();
+    ?> <table border="0"><tr> <?php
     for($i=0; $i<strlen($cleVigenere); $i++){
-        array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(strtolower($cleVigenere[$i]))-97), $cle = NULL, $affAlpha = $affAlpha));
-    }
+        ?> <th><?php array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(strtolower($cleVigenere[$i]))-97), $cle = NULL, $affAlpha = $affAlpha)); ?></th> <?php 
+    } ?> </tr></table> <?php
 
     for($j=0; $j<strlen($phrase); $j++){
         $caractere = $phrase[$j];
@@ -209,7 +214,7 @@ function ex_4($phrase, $cleVigenere, $affAlpha){
                 $phrase[$j] = $alphabetsVigenere[$j%(strlen($cleVigenere))][$caractere];
             }
             elseif(IntlChar::isupper($caractere)){
-                $phrase[$i] = strtoupper($alphabetsVigenere[$j%(strlen($cleVigenere))][strtolower($caractere)]);
+                $phrase[$j] = strtoupper($alphabetsVigenere[$j%(strlen($cleVigenere))][strtolower($caractere)]);
             } 
         }
     }
@@ -224,7 +229,7 @@ if(!isset($_POST['phrase4'])) {
     <form method="POST">
         <p>Phrase à crypter : <input type="text" name="phrase4" /></p>
         <p>Clé de Vigenère : <input type="text" name="cleVigenere" /></p>
-        <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
+        <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet"></p>
         <p><input type="submit" value="Envoyer"></p>
     </form>
 
@@ -233,13 +238,13 @@ if(!isset($_POST['phrase4'])) {
     else {
         $phrase4 = $_POST["phrase4"];
         $cleVigenere = $_POST["cleVigenere"];
-        $affAlpha = $_POST["AfficheAlphabet"]
+        if(isset($_POST["AfficheAlphabet"])){$affAlpha = TRUE;} else{$affAlpha = FALSE;}
         ?> 
 
         <form method="POST">
             <p>Phrase à crypter : <input type="text" name="phrase4" /></p>
             <p>Clé de Vigenère : <input type="text" name="cleVigenere" /></p>
-            <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
+            <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet"></p>
             <p><input type="submit" value="Envoyer"></p>
         </form>
 

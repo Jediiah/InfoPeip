@@ -1,0 +1,119 @@
+
+html {
+	margin: 0;
+	padding: 0;
+	overflow-y: scroll;
+}
+
+
+body {
+	width:1198px;
+	margin:0 auto;
+
+	background-image:url("../Img/fondtetrisreparer.png");
+	background-position:top center;
+	background-repeat: repeat-y;
+	background-attachment:scroll;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+
+	font-family: 'Open Sans', sans-serif;
+	color: #247069;
+	font-size: 11pt;
+	font-weight:400;
+}
+
+a:link {color: #3aa299; font-weight: bold; text-decoration: none;}
+a:visited {color: #3aa299; font-weight: bold; text-decoration: none;}
+a:active {color: #3aa299; font-weight: bold; text-decoration: none;}
+a:hover {color: #37bbb0; font-weight: bold; text-decoration: none;}
+
+
+
+pre {
+	background-color: snow;
+	border-width: 3px;
+	border-style: groove;
+	border-color: darkgray;
+	padding: 5px;
+}
+
+
+#header {
+	text-align: center;
+	margin-top: 28px;
+	margin-bottom: 28px;
+}
+
+
+#menu {
+	position:relative;
+	
+	background:#ffffff;
+	
+	font-family: 'OOfont';
+	color:#37bbb0;
+	font-weight:bold;
+	font-size:14pt;
+	text-align: center;
+	
+	margin-bottom:16px;
+	padding:10px;
+	border-radius: 5px;
+	
+	-moz-box-shadow:    0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    box-shadow:         0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+}
+
+#menu a:link    {color:#247069; font-weight:bold; text-decoration:none;}
+#menu a:active  {color:#247069; font-weight:bold; text-decoration:none;}
+#menu a:hover   {color:#37bbb0; font-weight:bold; text-decoration:none;}
+
+
+#content {
+	float:left;
+	width:800px;
+	
+	background:#ffffff;
+	
+	padding:16px;
+	border-radius: 5px;
+	
+	-moz-box-shadow:    0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    box-shadow:         0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+	
+	margin-left:0px;
+	margin-top:0px;
+	margin-right:16px;
+	margin-bottom:16px;
+}
+
+
+#side {
+	float:left;
+	width:350px;
+}
+
+#Sommaire {
+	background-color: #ffffff;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.code {
+	font-weight: 600;
+	font-family: 'FreeMono, monospace'
+}
+
+.title {
+	font-family:"OOfont";
+	font-size:35pt;
+	font-weight:200;
+	color:#37bbb0;
+}
+
+
