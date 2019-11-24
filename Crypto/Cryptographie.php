@@ -1,5 +1,4 @@
 
-<html><h2>TP3 Cryptographie | LALLEMAND-BIRCK Zacharie</h2><br></html>
 
 <?php
 
@@ -25,10 +24,18 @@ function genere_alphabet($decalage = 0, $cle = NULL, $affAlpha = FALSE){
             $alphabetCrypte[chr(97+$i)] = strtolower($cle[$i]);
         }
     }
-    if($affAlpha){
-        echo '<pre>'; print_r($alphabetCrypte); echo '</pre>';
-    }
     return($alphabetCrypte);
+}
+
+
+function affichage($phrase = "", $alphabet = []){
+    if($phrase!=""){
+        echo "Texte crypté : <br><pre>".$phrase."</pre>";
+    }
+
+    if($alphabet!=[]){
+        echo '<pre>'; print_r($alphabet); echo '</pre>';
+    }
 }
 
 
@@ -49,42 +56,16 @@ function ex_1($phrase, $affAlpha){
             } 
         }
     }
+    if($affAlpha){
+        affichage($phrase, $alphabetDecale);
+    }
+    else{
+        affichage($phrase);
+    }
     return($phrase);
 }
 
-echo"<p><strong>---------------- Exercice 1 ------------------</strong></p>";
-if(!isset($_POST['phrase1'])) {
-    ?>
-    
-    <form method="POST">
-        <p>Phrase à crypter : <input type="text" name="phrase1" /></p>
-        <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
-        <p><input type="submit" value="Envoyer"></p>
-    </form>
 
-    <?php
-    } 
-    else {
-        $phrase1 = $_POST["phrase1"];
-        $affAlpha = $_POST["AfficheAlphabet"]
-        ?> 
-
-        <form method="POST">
-            <p>Phrase à crypter : <input type="text" name="phrase1" /></p>
-            <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="0"></p>
-            <p><input type="submit" value="Envoyer"></p>
-        </form>
-
-        <?php
-        
-        $phrase1 = ex_1($phrase1, $affAlpha);
-        echo $phrase1;
-    }
-
-
-
-
-echo"<br>";
 /* ------------------------- Ecercice 2 ------------------------------ */ 
 
 function ex_2($phrase, $decalageDemande, $affAlpha){
@@ -103,7 +84,7 @@ function ex_2($phrase, $decalageDemande, $affAlpha){
     return($phrase);
 }
 
-
+/*
 echo"<p><strong>---------------- Exercice 2 ------------------</strong></p>";
 if(!isset($_POST['phrase2'])) {
     ?>
@@ -159,7 +140,7 @@ function ex_3($phrase, $cleEntre, $affAlpha){
     return($phrase);
 }
 
-
+/*
 echo"<p><strong>---------------- Exercice 3 ------------------</strong></p>";
 if(!isset($_POST['phrase3'])) {
     ?>
@@ -221,7 +202,7 @@ function ex_4($phrase, $cleVigenere, $affAlpha){
     return($phrase);
 }
 
-
+/*
 echo"<p><strong>---------------- Exercice 4 ------------------</strong></p>";
 if(!isset($_POST['phrase4'])) {
     ?>
@@ -240,10 +221,7 @@ if(!isset($_POST['phrase4'])) {
         $cleVigenere = $_POST["cleVigenere"];
         if(isset($_POST["AfficheAlphabet"])){$affAlpha = TRUE;} else{$affAlpha = FALSE;}
         ?> 
-
-        <form method="POST">
-            <p>Phrase à crypter : <input type="text" name="phrase4" /></p>
-            <p>Clé de Vigenère : <input type="text" name="cleVigenere" /></p>
+float:none;ype="text" name="cleVigenere" /></p>
             <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet"></p>
             <p><input type="submit" value="Envoyer"></p>
         </form>
@@ -252,4 +230,4 @@ if(!isset($_POST['phrase4'])) {
         
         $phrase4 = ex_4($phrase4, $cleVigenere, $affAlpha);
         echo $phrase4;
-    }
+    } */
