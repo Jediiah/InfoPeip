@@ -2,7 +2,7 @@
 
 <?php
 
-function genere_alphabet($decalage = 0, $cle = NULL, $affAlpha = FALSE){
+function genere_alphabet($decalage = 0, $cle = NULL){
     /* 
     *   Fonction qui génére un alphabet avec le décalage demandé ou avec une clé de vigenère. 
     *   @param int $decalage
@@ -28,13 +28,13 @@ function genere_alphabet($decalage = 0, $cle = NULL, $affAlpha = FALSE){
 }
 
 
-function affichage($phrase = "", $alphabet = []){
+function affichage($phrase="", $alphabet=[], $alphaID=""){
     if($phrase!=""){
-        echo "Texte crypté : <br><pre>".$phrase."</pre>";
+        echo "Texte crypté : <br><pre>".$phrase."</pre><br>";
     }
 
     if($alphabet!=[]){
-        echo '<pre>'; print_r($alphabet); echo '</pre>';
+        echo 'Alphabet '.$alphaID.' :<br><pre>'; print_r($alphabet); echo '</pre>';
     }
 }
 
@@ -44,7 +44,7 @@ function affichage($phrase = "", $alphabet = []){
 /* ------------------------- Ecercice 1 ------------------------------ */ 
 
 function ex_1($phrase, $affAlpha){
-    $alphabetDecale = genere_alphabet($decalage = 1, $cle = NULL, $affAlpha = $affAlpha);
+    $alphabetDecale = genere_alphabet($decalage = 1, $cle = NULL);
     for($i=0; $i<strlen($phrase); $i++){
         $caractere = $phrase[$i];
         if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
@@ -69,7 +69,7 @@ function ex_1($phrase, $affAlpha){
 /* ------------------------- Ecercice 2 ------------------------------ */ 
 
 function ex_2($phrase, $decalageDemande, $affAlpha){
-    $alphabetDecale = genere_alphabet($decalage = $decalageDemande, $cle = NULL, $affAlpha = $affAlpha);
+    $alphabetDecale = genere_alphabet($decalage = $decalageDemande, $cle = NULL);
     for($i=0; $i<strlen($phrase); $i++){
         $caractere = $phrase[$i];
         if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
@@ -81,51 +81,23 @@ function ex_2($phrase, $decalageDemande, $affAlpha){
             } 
         }
     }
+    if($affAlpha){
+        affichage($phrase, $alphabetDecale);
+    }
+    else{
+        affichage($phrase);
+    }
     return($phrase);
 }
 
-/*
-echo"<p><strong>---------------- Exercice 2 ------------------</strong></p>";
-if(!isset($_POST['phrase2'])) {
-    ?>
-    
-    <form method="POST">
-        <p>Phrase à crypter : <input type="text" name="phrase2" /></p>
-        <p>Decalage : <input type="int" name="decalage" /></p>
-        <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
-        <p><input type="submit" value="Envoyer"></p>
-    </form>
-
-    <?php
-    } 
-    else {
-        $phrase2 = $_POST["phrase2"];
-        $decalage = $_POST["decalage"];
-        $affAlpha = $_POST["AfficheAlphabet"]
-        ?> 
-
-        <form method="POST">
-            <p>Phrase à crypter : <input type="text" name="phrase2" /></p>
-            <p>Decalage : <input type="int" name="decalage" /></p>
-            <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
-            <p><input type="submit" value="Envoyer"></p>
-        </form>
-
-        <?php
-        
-        $phrase2 = ex_2($phrase2, $decalage, $affAlpha);
-        echo $phrase2;
-    }
 
 
 
 
-
-echo"<br>";
 /* ------------------------- Ecercice 3 ------------------------------ */ 
 
 function ex_3($phrase, $cleEntre, $affAlpha){
-    $alphabetDecale = genere_alphabet($decalage = 0, $cle = $cleEntre, $affAlpha = $affAlpha);
+    $alphabetDecale = genere_alphabet($decalage = 0, $cle = $cleEntre);
     for($i=0; $i<strlen($phrase); $i++){
         $caractere = $phrase[$i];
         if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
@@ -137,56 +109,26 @@ function ex_3($phrase, $cleEntre, $affAlpha){
             } 
         }
     }
+    if($affAlpha){
+        affichage($phrase, $alphabetDecale);
+    }
+    else{
+        affichage($phrase);
+    }
     return($phrase);
 }
 
-/*
-echo"<p><strong>---------------- Exercice 3 ------------------</strong></p>";
-if(!isset($_POST['phrase3'])) {
-    ?>
-    
-    <form method="POST">
-        <p>Phrase à crypter : <input type="text" name="phrase3" /></p>
-        <p>Nouvel alphabet : <input type="text" name="cle" /></p>
-        <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
-        <p><input type="submit" value="Envoyer"></p>
-    </form>
-
-    <?php
-    } 
-    else {
-        $phrase3 = $_POST["phrase3"];
-        $cle = $_POST["cle"];
-        $affAlpha = $_POST["AfficheAlphabet"]
-        ?> 
-
-        <form method="POST">
-            <p>Phrase à crypter : <input type="text" name="phrase3" /></p>
-            <p>Nouvel alphabet : <input type="text" name="cle" /></p>
-            <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
-            <p><input type="submit" value="Envoyer"></p>
-        </form>
-
-        <?php
-        
-        $phrase3 = ex_3($phrase3, $cle, $affAlpha);
-        echo $phrase3;
-    }
 
 
 
 
-
-
-echo"<br>";
 /* ------------------------- Ecercice 4 ------------------------------ */ 
 
 function ex_4($phrase, $cleVigenere, $affAlpha){
     $alphabetsVigenere = array();
-    ?> <table border="0"><tr> <?php
     for($i=0; $i<strlen($cleVigenere); $i++){
-        ?> <th><?php array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(strtolower($cleVigenere[$i]))-97), $cle = NULL, $affAlpha = $affAlpha)); ?></th> <?php 
-    } ?> </tr></table> <?php
+        array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(strtolower($cleVigenere[$i]))-97), $cle = NULL));
+    } 
 
     for($j=0; $j<strlen($phrase); $j++){
         $caractere = $phrase[$j];
@@ -198,6 +140,18 @@ function ex_4($phrase, $cleVigenere, $affAlpha){
                 $phrase[$j] = strtoupper($alphabetsVigenere[$j%(strlen($cleVigenere))][strtolower($caractere)]);
             } 
         }
+    }
+    if($affAlpha){
+        affichage($phrase);
+        ?> <table border="0"><tr> <?php
+        for($i=0; $i<count($alphabetsVigenere); $i++){
+            echo "<th>";
+            affichage($phrase="", $alphabet=$alphabetsVigenere[$i], $alphaID=$cleVigenere[$i]);
+            echo "</th>";
+        } ?> </tr></table> <?php
+    }
+    else{
+        affichage($phrase);
     }
     return($phrase);
 }

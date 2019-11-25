@@ -41,9 +41,7 @@
 <span id="content">
     <p style="font-size: 16pt; font-weight: bold"> <?php
     
-
-    echo"<p style='text-align: center; font-size: 14pt; margin-bottom: 10px;'><strong>--------------------------------------- Exercice 1 -----------------------------------------------------------------------------------------------------------------------------------------</strong></p>";
-    if(!isset($_POST['phrase1'])) {
+      if(!isset($_POST['phrase1'])) {
         ?>
         
         <form method="POST">
