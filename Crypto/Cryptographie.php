@@ -155,33 +155,3 @@ function ex_4($phrase, $cleVigenere, $affAlpha){
     }
     return($phrase);
 }
-
-/*
-echo"<p><strong>---------------- Exercice 4 ------------------</strong></p>";
-if(!isset($_POST['phrase4'])) {
-    ?>
-    
-    <form method="POST">
-        <p>Phrase à crypter : <input type="text" name="phrase4" /></p>
-        <p>Clé de Vigenère : <input type="text" name="cleVigenere" /></p>
-        <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet"></p>
-        <p><input type="submit" value="Envoyer"></p>
-    </form>
-
-    <?php
-    } 
-    else {
-        $phrase4 = $_POST["phrase4"];
-        $cleVigenere = $_POST["cleVigenere"];
-        if(isset($_POST["AfficheAlphabet"])){$affAlpha = TRUE;} else{$affAlpha = FALSE;}
-        ?> 
-float:none;ype="text" name="cleVigenere" /></p>
-            <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet"></p>
-            <p><input type="submit" value="Envoyer"></p>
-        </form>
-
-        <?php
-        
-        $phrase4 = ex_4($phrase4, $cleVigenere, $affAlpha);
-        echo $phrase4;
-    } */
