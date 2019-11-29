@@ -21,13 +21,9 @@
                   
                   <td>&nbsp;</td>
                   <td align="center"><a href="Ex1.php">Exercice 1</a></td>
-                  
                   <td align="center"><a href="Ex2.php">Exercice 2</a></td>
-                  
                   <td align="center"><a href="Ex3.php">Exercice 3</a></td>
-                  
                   <td align="center"><a href="Ex4.php">Exercice 4</a></td>
-                   
                   <td align="center"><a href="bientot.php">Exercice 5</a></td>
                   <td>&nbsp;</td>
                   
@@ -39,7 +35,35 @@
 
 <?php include 'Cryptographie.php'; ?>
 <span id="content">
-    <p style="font-size: 16pt; font-weight: bold"> <?php
+    <p style="font-size: 16pt; font-weight: bold"> 
+    Exercice 4 : <br>
+    <pre>
+#Exercice 4
+$phrase = $_POST["phrase"];
+$cleVigenere = $_POST["cle"];
+$alphabets = array();
+
+Pour $i de 0 à strlen($cleVigenere){    // On créé un alphabet décaler pour chaque caractere de la cle
+    genere_alphabet(decalage = ord($cleVigenere[$i]-97)) <-- ajouter($alphabets);
+}
+
+Pour $j de 0 à strlen($phrase){
+    $lettre = $phrase[$j];
+    Si (65<=ord($lettre)<=90 ou 97<=ord($lettre)<=122){  
+        $alphabets[$j%(strlen($cleVigenere))][$lettre] <-- $phrase[$lettre];  
+      }
+      Sinon Si ($lettre est majuscule){
+        $alphabets[$j%(strlen($cleVigenere))][$lettre] <-- strtoupper($phrase[$i]);
+      }
+    }  
+  }
+}
+
+Affiche $phrase;
+    </pre><br>
+
+<h3>Application :</h3> 
+    <?php
 
 if(!isset($_POST['phrase4'])) {
     ?>

@@ -39,7 +39,21 @@
 
 <?php include 'Cryptographie.php'; ?>
 <span id="content">
-    <p style="font-size: 16pt; font-weight: bold"> <?php
+    <p style="font-size: 16pt; font-weight: bold">
+    Exercice 2 : <br>
+    <pre>
+#Exercice 2
+$phrase = $_POST["phrase"];
+$decalage = $_POST["decalage"];
+genere_alphabet(decalage = $decalage) <-- $alphabetDecale;
+
+remplace_lettres($phrase, $alphabetDecale) <-- $phrase;
+
+Affiche $phrase;
+    </pre><br>
+
+<h3>Application :</h3> 
+    <?php
 
     if(!isset($_POST['phrase2'])) {
         ?>

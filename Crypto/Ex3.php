@@ -21,13 +21,9 @@
                   
                   <td>&nbsp;</td>
                   <td align="center"><a href="Ex1.php">Exercice 1</a></td>
-                  
                   <td align="center"><a href="Ex2.php">Exercice 2</a></td>
-                  
                   <td align="center"><a href="Ex3.php">Exercice 3</a></td>
-                  
                   <td align="center"><a href="Ex4.php">Exercice 4</a></td>
-                   
                   <td align="center"><a href="bientot.php">Exercice 5</a></td>
                   <td>&nbsp;</td>
                   
@@ -39,14 +35,28 @@
 
 <?php include 'Cryptographie.php'; ?>
 <span id="content">
-    <p style="font-size: 16pt; font-weight: bold"> <?php
+    <p style="font-size: 16pt; font-weight: bold">
+    Exercice 3 : <br>
+    <pre>
+#Exercice 3
+$phrase = $_POST["phrase"];
+$nvoAlphabet = $_POST["alphabet"];
+genere_alphabet($nvo_alphabet = $nvoAlphabet) <-- $alphabetCrypte;
+
+remplace_lettres($phrase, $alphabetCrypte) <-- $phrase;
+
+Affiche $phrase;
+    </pre><br>
+
+<h3>Application :</h3> 
+    <?php
 
 if(!isset($_POST['phrase3'])) {
     ?>
     
     <form method="POST">
         <p>Texte à crypter : <br><textarea name="phrase3" cols="60" rows="8" maxlenght="1000"></textarea> </p>
-        <p>Nouvel alphabet : <input type="text" name="cle" /></p>
+        <p>Nouvel alphabet : <input type="text" name="cle" minlenght="26" maxlenght="26" /></p>
         <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
         <p><input type="submit" value="Envoyer"></p>
     </form>

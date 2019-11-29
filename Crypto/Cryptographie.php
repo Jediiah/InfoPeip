@@ -38,24 +38,27 @@ function affichage($phrase="", $alphabet=[], $alphaID=""){
     }
 }
 
-
+function remplace_lettres($phrase, $alphabet){
+    for($i=0; $i<strlen($phrase); $i++){
+        $caractere = $phrase[$i];
+        if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
+            if(IntlChar::islower($caractere)){
+                $phrase[$i] = $alphabet[$caractere];
+            }
+            elseif(IntlChar::isupper($caractere)){
+                $phrase[$i] = strtoupper($alphabet[strtolower($caractere)]);
+            } 
+        }
+    }
+    return($phrase);
+}
 
 
 /* ------------------------- Ecercice 1 ------------------------------ */ 
 
 function ex_1($phrase, $affAlpha){
     $alphabetDecale = genere_alphabet($decalage = 1, $cle = NULL);
-    for($i=0; $i<strlen($phrase); $i++){
-        $caractere = $phrase[$i];
-        if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
-            if(IntlChar::islower($caractere)){
-                $phrase[$i] = $alphabetDecale[$caractere];
-            }
-            elseif(IntlChar::isupper($caractere)){
-                $phrase[$i] = strtoupper($alphabetDecale[strtolower($caractere)]);
-            } 
-        }
-    }
+    $phrase = remplace_lettres($phrase, $alphabetDecale);
     if($affAlpha){
         affichage($phrase, $alphabetDecale);
     }
@@ -70,17 +73,7 @@ function ex_1($phrase, $affAlpha){
 
 function ex_2($phrase, $decalageDemande, $affAlpha){
     $alphabetDecale = genere_alphabet($decalage = $decalageDemande, $cle = NULL);
-    for($i=0; $i<strlen($phrase); $i++){
-        $caractere = $phrase[$i];
-        if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
-            if(IntlChar::islower($caractere)){
-                $phrase[$i] = $alphabetDecale[$caractere];
-            }
-            elseif(IntlChar::isupper($caractere)){
-                $phrase[$i] = strtoupper($alphabetDecale[strtolower($caractere)]);
-            } 
-        }
-    }
+    $phrase = remplace_lettres($phrase, $alphabetDecale);
     if($affAlpha){
         affichage($phrase, $alphabetDecale);
     }
@@ -97,25 +90,20 @@ function ex_2($phrase, $decalageDemande, $affAlpha){
 /* ------------------------- Ecercice 3 ------------------------------ */ 
 
 function ex_3($phrase, $cleEntre, $affAlpha){
-    $alphabetDecale = genere_alphabet($decalage = 0, $cle = $cleEntre);
-    for($i=0; $i<strlen($phrase); $i++){
-        $caractere = $phrase[$i];
-        if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
-            if(IntlChar::islower($caractere)){
-                $phrase[$i] = $alphabetDecale[$caractere];
-            }
-            elseif(IntlChar::isupper($caractere)){
-                $phrase[$i] = strtoupper($alphabetDecale[strtolower($caractere)]);
-            } 
+    if(strlen($cleEntre)==26 and count_chars($cleEntre==[])){
+        $alphabetDecale = genere_alphabet($decalage = 0, $cle = $cleEntre);
+        $phrase = remplace_lettres($phrase, $alphabetDecale);
+        if($affAlpha){
+            affichage($phrase, $alphabetDecale);
         }
-    }
-    if($affAlpha){
-        affichage($phrase, $alphabetDecale);
+        else{
+            affichage($phrase);
+        }
+        return($phrase);
     }
     else{
-        affichage($phrase);
+        return "Désolé! L'alphabet doit être constitué de 26 lettres différentes.";
     }
-    return($phrase);
 }
 
 
