@@ -1,6 +1,15 @@
 
-
 <?php
+
+function strlong($str){
+    /*
+        Idem strlen()
+    */
+    $taille = 0;
+    while(isset($texte[$taille])){$taille++;}
+    return($taille);
+}
+
 
 function genere_alphabet($decalage = 0, $cle = NULL){
     /* 
@@ -64,6 +73,9 @@ function test_vigenere($cle){
     }
     return(TRUE);
 }
+
+
+
 
 /* ------------------------- Ecercice 1 ------------------------------ */ 
 

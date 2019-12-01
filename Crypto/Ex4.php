@@ -54,7 +54,7 @@ $cleVigenere = $_POST["cle"];
 $alphabets = array();
 
 Si (test_cleVigenere){
-    Pour $i de 0 à strlen($cleVigenere($cleVigenere)){  <span class="commentaire">// On créé un alphabet décaler pour chaque caractere de la cle</span>
+    Pour $i de 0 à strlen($cleVigenere($cleVigenere)){  <span class="commentaire">// On créé un alphabet décalé pour chaque caractere de la cle</span>
         genere_alphabet(decalage = ord($cleVigenere[$i]-97)) <-- ajouter($alphabets);
     }
 
