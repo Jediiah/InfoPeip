@@ -39,27 +39,41 @@
     Exercice 4 : <br>
     <pre>
 #Exercice 4
+Fonction test_cleVigenere($cle){
+    Pour $i de 0 à strlen($cle){
+        Si (!(65<=ord($lettre)<=90 ou 97<=ord($lettre)<=122)){ <span class="commentaire">// Si n'est pas une lettre</span>
+            Retourne FALSE; <span class="commentaire">// Dés que quelque chose est retourné la fonction s'arrête.</span>
+        }
+    }
+    Retourne TRUE;
+}
+
+
 $phrase = $_POST["phrase"];
 $cleVigenere = $_POST["cle"];
 $alphabets = array();
 
-Pour $i de 0 à strlen($cleVigenere){    // On créé un alphabet décaler pour chaque caractere de la cle
-    genere_alphabet(decalage = ord($cleVigenere[$i]-97)) <-- ajouter($alphabets);
-}
+Si (test_cleVigenere){
+    Pour $i de 0 à strlen($cleVigenere($cleVigenere)){  <span class="commentaire">// On créé un alphabet décaler pour chaque caractere de la cle</span>
+        genere_alphabet(decalage = ord($cleVigenere[$i]-97)) <-- ajouter($alphabets);
+    }
 
-Pour $j de 0 à strlen($phrase){
-    $lettre = $phrase[$j];
-    Si (65<=ord($lettre)<=90 ou 97<=ord($lettre)<=122){  
-        $alphabets[$j%(strlen($cleVigenere))][$lettre] <-- $phrase[$lettre];  
-      }
-      Sinon Si ($lettre est majuscule){
-        $alphabets[$j%(strlen($cleVigenere))][$lettre] <-- strtoupper($phrase[$i]);
-      }
+    Pour $j de 0 à strlen($phrase){
+        $lettre = $phrase[$j];
+        Si ($lettre est minuscule){  
+            $alphabets[$j%(strlen($cleVigenere))][$lettre] <-- $phrase[$lettre];  
+        }
+        Sinon Si ($lettre est majuscule){
+            $alphabets[$j%(strlen($cleVigenere))][$lettre] <-- strtoupper($phrase[$i]);
+        }
     }  
-  }
+
+    Affiche $phrase;
+}
+Sinon{
+    Affiche 'Erreur : La clé ne doit contenir que des lettres.';
 }
 
-Affiche $phrase;
     </pre><br>
 
 <h3>Application :</h3> 

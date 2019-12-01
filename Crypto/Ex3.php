@@ -41,11 +41,15 @@
 #Exercice 3
 $phrase = $_POST["phrase"];
 $nvoAlphabet = $_POST["alphabet"];
-genere_alphabet($nvo_alphabet = $nvoAlphabet) <-- $alphabetCrypte;
 
-remplace_lettres($phrase, $alphabetCrypte) <-- $phrase;
-
-Affiche $phrase;
+Si (strlen($nvoAlphabet)==26 and pas_de_répétition($nvoAlphabet)){
+    genere_alphabet($nvo_alphabet = $nvoAlphabet) <-- $alphabetCrypte;
+    remplace_lettres($phrase, $alphabetCrypte) <-- $phrase;
+    Affiche $phrase;
+}
+Sinon{
+    Affiche "Erreur : L'alphabet doit être constitué de 26 lettres différentes.";
+}
     </pre><br>
 
 <h3>Application :</h3> 

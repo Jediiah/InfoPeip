@@ -45,11 +45,15 @@
 #Exercice 2
 $phrase = $_POST["phrase"];
 $decalage = $_POST["decalage"];
-genere_alphabet(decalage = $decalage) <-- $alphabetDecale;
 
-remplace_lettres($phrase, $alphabetDecale) <-- $phrase;
-
-Affiche $phrase;
+Si ($decalage est entier){
+    genere_alphabet($decalage = $decalage) <-- $alphabetDecale;
+    remplace_lettres($phrase, $alphabetDecale) <-- $phrase;
+    Affiche $phrase;
+}
+Sinon{
+    Affiche "Erreur : Le décalage doit être un nombre entier.";
+}
     </pre><br>
 
 <h3>Application :</h3> 

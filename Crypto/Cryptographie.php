@@ -38,6 +38,7 @@ function affichage($phrase="", $alphabet=[], $alphaID=""){
     }
 }
 
+
 function remplace_lettres($phrase, $alphabet){
     for($i=0; $i<strlen($phrase); $i++){
         $caractere = $phrase[$i];
@@ -53,6 +54,16 @@ function remplace_lettres($phrase, $alphabet){
     return($phrase);
 }
 
+
+function test_vigenere($cle){
+    for($i=0; $i<strlen($cle); $i++){
+        $caractere = $cle[$i];
+        if(!((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122))){
+            return(FALSE);
+        }
+    }
+    return(TRUE);
+}
 
 /* ------------------------- Ecercice 1 ------------------------------ */ 
 
@@ -72,15 +83,21 @@ function ex_1($phrase, $affAlpha){
 /* ------------------------- Ecercice 2 ------------------------------ */ 
 
 function ex_2($phrase, $decalageDemande, $affAlpha){
-    $alphabetDecale = genere_alphabet($decalage = $decalageDemande, $cle = NULL);
-    $phrase = remplace_lettres($phrase, $alphabetDecale);
-    if($affAlpha){
-        affichage($phrase, $alphabetDecale);
+    if(is_int($decalageDemande)){
+        $alphabetDecale = genere_alphabet($decalage = $decalageDemande, $cle = NULL);
+        $phrase = remplace_lettres($phrase, $alphabetDecale);
+        if($affAlpha){
+            affichage($phrase, $alphabetDecale);
+        }
+        else{
+            affichage($phrase);
+        }
+        return($phrase);
     }
     else{
-        affichage($phrase);
+        echo 'Erreur : Le décalage doit être un nombre entier.';
+        return($phrase);
     }
-    return($phrase);
 }
 
 
@@ -90,7 +107,7 @@ function ex_2($phrase, $decalageDemande, $affAlpha){
 /* ------------------------- Ecercice 3 ------------------------------ */ 
 
 function ex_3($phrase, $cleEntre, $affAlpha){
-    if(strlen($cleEntre)==26 and count_chars($cleEntre==[])){
+    if(strlen($cleEntre)==26 and count_chars($cleEntre)==[]){
         $alphabetDecale = genere_alphabet($decalage = 0, $cle = $cleEntre);
         $phrase = remplace_lettres($phrase, $alphabetDecale);
         if($affAlpha){
@@ -102,7 +119,8 @@ function ex_3($phrase, $cleEntre, $affAlpha){
         return($phrase);
     }
     else{
-        return "Désolé! L'alphabet doit être constitué de 26 lettres différentes.";
+        echo "Erreur : L'alphabet doit être constitué de 26 lettres différentes.";
+        return($phrase);
     }
 }
 
@@ -113,33 +131,40 @@ function ex_3($phrase, $cleEntre, $affAlpha){
 /* ------------------------- Ecercice 4 ------------------------------ */ 
 
 function ex_4($phrase, $cleVigenere, $affAlpha){
-    $alphabetsVigenere = array();
-    for($i=0; $i<strlen($cleVigenere); $i++){
-        array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(strtolower($cleVigenere[$i]))-97), $cle = NULL));
-    } 
+    if(test_vigenere($cleVigenere)){
+       $alphabetsVigenere = array();
+        for($i=0; $i<strlen($cleVigenere); $i++){
+            array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(strtolower($cleVigenere[$i]))-97), $cle = NULL));
+        } 
 
-    for($j=0; $j<strlen($phrase); $j++){
-        $caractere = $phrase[$j];
-        if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
-            if(IntlChar::islower($caractere)){
-                $phrase[$j] = $alphabetsVigenere[$j%(strlen($cleVigenere))][$caractere];
+        for($j=0; $j<strlen($phrase); $j++){
+            $caractere = $phrase[$j];
+            if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
+                if(IntlChar::islower($caractere)){
+                    $phrase[$j] = $alphabetsVigenere[$j%(strlen($cleVigenere))][$caractere];
+                }
+                elseif(IntlChar::isupper($caractere)){
+                    $phrase[$j] = strtoupper($alphabetsVigenere[$j%(strlen($cleVigenere))][strtolower($caractere)]);
+                } 
             }
-            elseif(IntlChar::isupper($caractere)){
-                $phrase[$j] = strtoupper($alphabetsVigenere[$j%(strlen($cleVigenere))][strtolower($caractere)]);
-            } 
         }
-    }
-    if($affAlpha){
-        affichage($phrase);
-        ?> <table border="0"><tr> <?php
-        for($i=0; $i<count($alphabetsVigenere); $i++){
-            echo "<th>";
-            affichage($phrase="", $alphabet=$alphabetsVigenere[$i], $alphaID=$cleVigenere[$i]);
-            echo "</th>";
-        } ?> </tr></table> <?php
+        if($affAlpha){
+            affichage($phrase);
+            ?> <table border="0"><tr> <?php
+            for($i=0; $i<count($alphabetsVigenere); $i++){
+                echo "<th>";
+                affichage($phrase="", $alphabet=$alphabetsVigenere[$i], $alphaID=$cleVigenere[$i]);
+                echo "</th>";
+            } ?> </tr></table> <?php
+        }
+        else{
+            affichage($phrase);
+        }
+        return($phrase); 
     }
     else{
-        affichage($phrase);
+        echo 'Erreur : La clé ne doit contenir que des lettres.';
+        return($phrase);
     }
-    return($phrase);
+    
 }
