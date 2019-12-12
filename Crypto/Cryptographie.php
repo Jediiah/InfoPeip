@@ -39,7 +39,7 @@ function genere_alphabet($decalage = 0, $cle = NULL){
 
 function affichage($phrase="", $alphabet=[], $alphaID=""){
     if($phrase!=""){
-        echo "Texte crypté : <br><pre>".$phrase."</pre><br>";
+        echo "Texte crypté : <br><pre><p classe='rendu'>".$phrase."</p></pre><br>";
     }
 
     if($alphabet!=[]){
@@ -60,7 +60,7 @@ function remplace_lettres($phrase, $alphabet){
             } 
         }
     }
-    return($phrase);
+    return(htmlspecialchars($phrase));
 }
 
 
