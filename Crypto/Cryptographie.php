@@ -10,6 +10,17 @@ function strlong($str){
     return($taille);
 }
 
+
+function arraylong($array){
+    /*
+        Idem count()
+    */
+    $taille = 0;
+    while(isset($array[$taille])){$taille++;}
+    return($taille);
+}
+
+
 function isupper($car){
     /* 
         Test si la lettre est majuscule
@@ -26,15 +37,33 @@ function isupper($car){
 
 function convert_casse_upper($car){
     $UPPER = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-    $LOWER = [];
+    $LOWER = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+    for($i; $i<26; $i++){
+        if($car==$LOWER[$i]){
+            return $UPPER[$i];
+        }
+    }
+    return FALSE;
+}
+
+
+function convert_casse_lower($car){
+    $UPPER = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    $LOWER = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+    for($i; $i<26; $i++){
+        if($car==$UPPER[$i]){
+            return $LOWER[$i];
+        }
+    }
+    return FALSE;
 }
 
 
 function genere_alphabet($decalage = 0, $cle = NULL){
     /* 
     *   Fonction qui génére un alphabet avec le décalage demandé ou avec une clé de vigenère. 
-    *   @param int $decalage
-    *
     */
     $alphabetCrypte = array();
     if($cle == NULL){ # Si on a donné un décallage et non une clé
@@ -49,7 +78,7 @@ function genere_alphabet($decalage = 0, $cle = NULL){
     }
     elseif($cle != NULL){# Si on a donné une clé de Vigenère
         for($i=0; $i<26; $i++){ # Comme avant, on associe chaque lettre à son correspondant selon la clé
-            $alphabetCrypte[chr(97+$i)] = strtolower($cle[$i]);
+            $alphabetCrypte[chr(97+$i)] = convert_casse_lower($cle[$i]);
         }
     }
     return($alphabetCrypte);
@@ -58,7 +87,7 @@ function genere_alphabet($decalage = 0, $cle = NULL){
 
 function affichage($phrase="", $alphabet=[], $alphaID=""){
     if($phrase!=""){
-        echo "Texte crypté : <br><pre><p classe='rendu'>".$phrase."</p></pre><br>";
+        echo "Texte crypté : <br><p classe='rendu'>".$phrase."</p><br>";
     }
 
     if($alphabet!=[]){
@@ -75,7 +104,7 @@ function remplace_lettres($phrase, $alphabet){
                 $phrase[$i] = $alphabet[$caractere];
             }
             elseif(isupper($caractere)){
-                $phrase[$i] = strtoupper($alphabet[strtolower($caractere)]);
+                $phrase[$i] = convert_casse_upper($alphabet[convert_casse_lower($caractere)]);
             } 
         }
     }
@@ -84,7 +113,7 @@ function remplace_lettres($phrase, $alphabet){
 
 
 function test_vigenere($cle){
-    for($i=0; $i<strlen($cle); $i++){
+    for($i=0; $i<strlong($cle); $i++){
         $caractere = $cle[$i];
         if(!((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122))){
             return(FALSE);
@@ -114,21 +143,15 @@ function ex_1($phrase, $affAlpha){
 /* ------------------------- Ecercice 2 ------------------------------ */ 
 
 function ex_2($phrase, $decalageDemande, $affAlpha){
-    if(is_int($decalageDemande)){
-        $alphabetDecale = genere_alphabet($decalage = $decalageDemande, $cle = NULL);
-        $phrase = remplace_lettres($phrase, $alphabetDecale);
-        if($affAlpha){
-            affichage($phrase, $alphabetDecale);
-        }
-        else{
-            affichage($phrase);
-        }
-        return($phrase);
+    $alphabetDecale = genere_alphabet($decalage = $decalageDemande, $cle = NULL);
+    $phrase = remplace_lettres($phrase, $alphabetDecale);
+    if($affAlpha){
+        affichage($phrase, $alphabetDecale);
     }
     else{
-        echo 'Erreur : Le décalage doit être un nombre entier.';
-        return($phrase);
+        affichage($phrase);
     }
+    return($phrase);
 }
 
 
@@ -138,7 +161,7 @@ function ex_2($phrase, $decalageDemande, $affAlpha){
 /* ------------------------- Ecercice 3 ------------------------------ */ 
 
 function ex_3($phrase, $cleEntre, $affAlpha){
-    if(strlen($cleEntre)==26 and count_chars($cleEntre)==[]){
+    if(strlong($cleEntre)==26 and count_chars($cleEntre)==[]){
         $alphabetDecale = genere_alphabet($decalage = 0, $cle = $cleEntre);
         $phrase = remplace_lettres($phrase, $alphabetDecale);
         if($affAlpha){
@@ -164,25 +187,25 @@ function ex_3($phrase, $cleEntre, $affAlpha){
 function ex_4($phrase, $cleVigenere, $affAlpha){
     if(test_vigenere($cleVigenere)){
        $alphabetsVigenere = array();
-        for($i=0; $i<strlen($cleVigenere); $i++){
-            array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(strtolower($cleVigenere[$i]))-97), $cle = NULL));
+        for($i=0; $i<strlong($cleVigenere); $i++){
+            array_push($alphabetsVigenere, genere_alphabet($decalage = (ord(convert_casse_lower($cleVigenere[$i]))-97), $cle = NULL));
         } 
 
         for($j=0; $j<strlen($phrase); $j++){
             $caractere = $phrase[$j];
             if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
-                if(IntlChar::islower($caractere)){
-                    $phrase[$j] = $alphabetsVigenere[$j%(strlen($cleVigenere))][$caractere];
+                if(!isupper($caractere)){
+                    $phrase[$j] = $alphabetsVigenere[$j%(strlong($cleVigenere))][$caractere];
                 }
-                elseif(IntlChar::isupper($caractere)){
-                    $phrase[$j] = strtoupper($alphabetsVigenere[$j%(strlen($cleVigenere))][strtolower($caractere)]);
+                elseif(isupper($caractere)){
+                    $phrase[$j] = convert_casse_upper($alphabetsVigenere[$j%(strlong($cleVigenere))][convert_casse_lower($caractere)]);
                 } 
             }
         }
         if($affAlpha){
             affichage($phrase);
             ?> <table border="0"><tr> <?php
-            for($i=0; $i<count($alphabetsVigenere); $i++){
+            for($i=0; $i<arraylong($alphabetsVigenere); $i++){
                 echo "<th>";
                 affichage($phrase="", $alphabet=$alphabetsVigenere[$i], $alphaID=$cleVigenere[$i]);
                 echo "</th>";

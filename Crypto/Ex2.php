@@ -64,7 +64,7 @@ Sinon{
         
         <form method="POST">
             <p>Texte à crypter : <br><textarea name="phrase2" cols="60" rows="8" maxlenght="1000"></textarea> </p>
-            <p>Décalage : <input type="int" name="decalage" /></p>
+            <p>Décalage : <input type="number" name="decalage" /></p>
             <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
             <p><input type="submit" value="Envoyer"></p>
         </form><br><br>
@@ -73,19 +73,20 @@ Sinon{
         } 
         else {
             $phrase2 = $_POST["phrase2"];
-            $decalage = $_POST["decalage"];
+            $decalage = intval($_POST["decalage"]);
             if(isset($_POST["AfficheAlphabet"])){$affAlpha = TRUE;} else{$affAlpha = FALSE;}
             ?> 
     
             <form method="POST">
                 <p>Texte à crypter : <br><textarea name="phrase2" cols="60" rows="8" maxlenght="1000"></textarea> </p>
-                <p>Decalage : <input type="int" name="decalage" /></p>
+                <p>Decalage : <input type="number" name="decalage" /></p>
                 <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet" value="TRUE"></p>
                 <p><input type="submit" value="Envoyer"></p>
             </form><br><br>
     
             <?php
             
+            var_dump($decalage);
             $phrase2 = ex_2($phrase2, $decalage, $affAlpha);
             unset($affAlpha, $_POST["phrase2"], $_POST["AfficheAlphabet"]);
         }
