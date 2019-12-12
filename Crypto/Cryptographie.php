@@ -10,6 +10,25 @@ function strlong($str){
     return($taille);
 }
 
+function isupper($car){
+    /* 
+        Test si la lettre est majuscule
+    */
+    $UPPER = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    for($i; $i<26; $i++){
+        if($car==$UPPER[$i]){
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+
+function convert_casse_upper($car){
+    $UPPER = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    $LOWER = [];
+}
+
 
 function genere_alphabet($decalage = 0, $cle = NULL){
     /* 
@@ -49,13 +68,13 @@ function affichage($phrase="", $alphabet=[], $alphaID=""){
 
 
 function remplace_lettres($phrase, $alphabet){
-    for($i=0; $i<strlen($phrase); $i++){
+    for($i=0; $i<strlong($phrase); $i++){
         $caractere = $phrase[$i];
         if((65<=ord($caractere) and ord($caractere)<=90) or (97<=ord($caractere) and ord($caractere)<=122)){
-            if(IntlChar::islower($caractere)){
+            if(!isupper($caractere)){
                 $phrase[$i] = $alphabet[$caractere];
             }
-            elseif(IntlChar::isupper($caractere)){
+            elseif(isupper($caractere)){
                 $phrase[$i] = strtoupper($alphabet[strtolower($caractere)]);
             } 
         }
