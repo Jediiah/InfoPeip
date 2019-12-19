@@ -1,7 +1,7 @@
 
 <?php
 
-function strlong($str){
+function strlong($texte){
     /*
         Idem strlen()
     */
@@ -31,7 +31,7 @@ function isupper($car){
             return TRUE;
         }
     }
-    return FALSE;
+    return $car;
 }
 
 
@@ -44,7 +44,7 @@ function convert_casse_upper($car){
             return $UPPER[$i];
         }
     }
-    return FALSE;
+    return $car;
 }
 
 
@@ -57,7 +57,7 @@ function convert_casse_lower($car){
             return $LOWER[$i];
         }
     }
-    return FALSE;
+    return $car;
 }
 
 

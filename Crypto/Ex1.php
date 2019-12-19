@@ -20,6 +20,8 @@
               <tbody><tr>
                   
                   <td>&nbsp;</td>
+                  <td align="center"><a href="Fonctions.php">Fonctions</a></td>
+
                   <td align="center"><a href="Ex1.php">Exercice 1</a></td>
                   
                   <td align="center"><a href="Ex2.php">Exercice 2</a></td>
@@ -37,57 +39,12 @@
     </header>
 
 
-<?php include 'Cryptographie.php'; ?>
+<?php include 'Cryptographie.php';?>
+
 <span id="content">
     <p style="font-size: 16pt; font-weight: bold">
     Exercice 1 : <br>
-    <pre><span class="commentaire">
-    // Les deux fonctions suivantes seront utilisées dans chaque exercice.</span>
-
-Fonction genere_alphabet($decalage=int ou $nvoAlphabet=str){<span class="commentaire">
-  /* 
-    Fonction qui génère un nouvel alphabet. 
-  */</span>
-  array() <-- $alphabetCrypte;
-
-  Si ($nvoAlphabet n'est pas définit){ <span class="commentaire">//Si un décalage est entré et non un nouvel alphabet</span>
-    $decalage % 26 <-- $decalage;
-    if($decalage < 0){
-      26 + $decalage <-- $decalage;
-    }
-    Pour $i de 0 à 26{
-      caractere(97+(($i+$decalage)%26)) <-- $alphabetCrypte[caractere(97+$i)]; <span class="commentaire">//On associe à chaque lettre (minuscule) son </span>
-    }                                                                           <span class="commentaire">//nouvel équivalent grace à la table <a href="https://fr.wikibooks.org/wiki/Les_ASCII_de_0_%C3%A0_127/La_table_ASCII">ASCII</a>.</span>
-  }
-  Sinon Si ($nvoAlphabet est définit){
-    Pour $i de 0 à 26{
-      strtolower($nvoAlphabet[$i]) <-- $alphabetCrypte[caractere(97+$i)];  
-    }
-  }
-
-  Retourne $alphabetCrypte;
-}
-
-
-Fonction remplace_lettres($phrase = str, $alphabet = array()){<span class="commentaire">
-  /* 
-    Fonction qui remplace toutes les lettres d'un texte par leur equivalent 
-    dans l'alphabet donné tout en respectant la casse.
-  */ </span>
-  Pour $i de 0 à strlen($phrase){
-    $lettre = $phrase[$i];
-    Si (65<=ord($lettre)<=90 ou 97<=ord($lettre)<=122){  <span class="commentaire">//Le codage d'après la table ASCII du caractere</span>  
-      Si ($lettre est minuscule){                         <span class="commentaire">//considéré correspond à une lettre </span>
-        $alphabetDecale[$lettre] <-- $phrase[$i];  <span class="commentaire">// On  remplace la lettre par son équivalent crypté</span>
-      }
-      Sinon Si ($lettre est majuscule){
-        $alphabetDecale[$lettre] <-- strtoupper($phrase[$i]);  <span class="commentaire">// pareil avec une lettre majuscule</span>
-      }
-    }  
-  }
-  Retourne $phrase;
-}
-
+    <pre>
 
 #Exercice 1
 $_POST["phrase"] <-- $phrase;
