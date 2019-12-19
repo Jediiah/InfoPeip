@@ -26,7 +26,7 @@ function isupper($car){
         Test si la lettre est majuscule
     */
     $UPPER = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-    for($i; $i<26; $i++){
+    for($i=0; $i<26; $i++){
         if($car==$UPPER[$i]){
             return TRUE;
         }
@@ -39,7 +39,7 @@ function convert_casse_upper($car){
     $UPPER = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     $LOWER = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
-    for($i; $i<26; $i++){
+    for($i=0; $i<26; $i++){
         if($car==$LOWER[$i]){
             return $UPPER[$i];
         }
@@ -52,7 +52,7 @@ function convert_casse_lower($car){
     $UPPER = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     $LOWER = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
-    for($i; $i<26; $i++){
+    for($i=0; $i<26; $i++){
         if($car==$UPPER[$i]){
             return $LOWER[$i];
         }
@@ -204,12 +204,12 @@ function ex_4($phrase, $cleVigenere, $affAlpha){
         }
         if($affAlpha){
             affichage($phrase);
-            ?> <table border="0"><tr> <?php
+            ?><p> <table border="0"><tr> <?php
             for($i=0; $i<arraylong($alphabetsVigenere); $i++){
                 echo "<th>";
                 affichage($phrase="", $alphabet=$alphabetsVigenere[$i], $alphaID=$cleVigenere[$i]);
                 echo "</th>";
-            } ?> </tr></table> <?php
+            } ?> </tr></table></p> <?php
         }
         else{
             affichage($phrase);

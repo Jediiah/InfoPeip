@@ -4,8 +4,9 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="Content-Language" content="fr">
-    <title>TP 3 - Cryptographie</title>
+    <title>Exercice 3 - TP3 Cryptographie</title>
     <link rel="stylesheet" type="text/css" href="CryptoStyle.css">
+    <link rel="shortcut icon" href="favicon-polytech.png">
   </head>
 
 
@@ -20,11 +21,17 @@
               <tbody><tr>
                   
                   <td>&nbsp;</td>
+                  <td align="center"><a href="Fonctions.php">Fonctions</a></td>
+
                   <td align="center"><a href="Ex1.php">Exercice 1</a></td>
+
                   <td align="center"><a href="Ex2.php">Exercice 2</a></td>
+
                   <td align="center"><a href="Ex3.php">Exercice 3</a></td>
+
                   <td align="center"><a href="Ex4.php">Exercice 4</a></td>
-                  <td align="center"><a href="bientot.php">Exercice 5</a></td>
+                  
+                  <td align="center"><a href="Ex5.php">Exercice 5</a></td>
                   <td>&nbsp;</td>
                   
               </tr></tbody>

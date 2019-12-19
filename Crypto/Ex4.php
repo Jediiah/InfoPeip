@@ -4,8 +4,9 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="Content-Language" content="fr">
-    <title>TP 3 - Cryptographie</title>
+    <title>Exercice 4 - TP3 Cryptographie </title>
     <link rel="stylesheet" type="text/css" href="CryptoStyle.css">
+    <link rel="shortcut icon" href="favicon-polytech.png">
   </head>
 
 
@@ -20,11 +21,17 @@
               <tbody><tr>
                   
                   <td>&nbsp;</td>
+                  <td align="center"><a href="Fonctions.php">Fonctions</a></td>
+
                   <td align="center"><a href="Ex1.php">Exercice 1</a></td>
+
                   <td align="center"><a href="Ex2.php">Exercice 2</a></td>
+
                   <td align="center"><a href="Ex3.php">Exercice 3</a></td>
+
                   <td align="center"><a href="Ex4.php">Exercice 4</a></td>
-                  <td align="center"><a href="bientot.php">Exercice 5</a></td>
+                  
+                  <td align="center"><a href="Ex5.php">Exercice 5</a></td>
                   <td>&nbsp;</td>
                   
               </tr></tbody>
@@ -37,6 +44,10 @@
 <span id="content">
     <p style="font-size: 16pt; font-weight: bold"> 
     Exercice 4 : <br>
+    <p style="font-size: 12pt; font-weight= normal">
+    Pour cet exercice mon programme génère un alphabet de césar pour chaque caractère de la clé (extensible à toute la table ASCII).
+    Cette méthode devient plus optimisée pour les longs textes.
+    </p>
     <pre>
 #Exercice 4
 Fonction test_cleVigenere($cle){
@@ -97,8 +108,8 @@ if(!isset($_POST['phrase4'])) {
         if(isset($_POST["AfficheAlphabet"])){$affAlpha = TRUE;} else{$affAlpha = FALSE;}
         ?> 
         <form method="POST">
-            <p>Texte à crypter : <br><textarea name="phrase4" cols="60" rows="8" maxlenght="1000"></textarea> </p>
-            <p>Clé de Vigenère : <input type="text" name="cleVigenere" maxlength="10" /></p>
+            <p>Texte à crypter : <br><textarea name="phrase4" cols="60" rows="8" maxlenght="1500"></textarea> </p>
+            <p>Clé de Vigenère : <input type="text" name="cleVigenere" maxlength="100" /></p>
             <p>Afficher l'alphabet généré : <input type="checkbox" name="AfficheAlphabet"></p>
             <p><input type="submit" value="Envoyer"></p>
         </form>

@@ -4,7 +4,8 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="Content-Language" content="fr">
-    <title>TP 3 - Cryptographie</title>
+    <title>Fonctions - TP3 Cryptographie</title>
+    <link rel="shortcut icon" href="favicon-polytech.png">
     <link rel="stylesheet" type="text/css" href="CryptoStyle.css">
   </head>
 
@@ -30,7 +31,7 @@
                   
                   <td align="center"><a href="Ex4.php">Exercice 4</a></td>
                    
-                  <td align="center"><a href="bientot.php">Exercice 5</a></td>
+                  <td align="center"><a href="Ex5.php">Exercice 5</a></td>
                   <td>&nbsp;</td>
                   
               </tr></tbody>
@@ -44,9 +45,11 @@
 <span id="content">
     <p style="font-size: 16pt; font-weight: bold">
     Fonctions : <br>
-
-    Pour réalisé les exercices demandés, j'ai utilisé 
-
+    <p style="font-size: 12pt; font-weight= normal">
+    Pour ces exercices, j'ai utilisé les caractères de la table <a href="https://fr.wikibooks.org/wiki/Les_ASCII_de_0_%C3%A0_127/La_table_ASCII">ASCII</a>. <br>
+    Bien que ce ne soit pas du tout la manière la plus simple ni la plus intuitive de réaliser ces exercices, 
+    il serait facile d'étendre le décalage à tous les caractères de cette table, rendant le décryptage du message plus compliqué.
+    </p>
     <pre><span class="commentaire">
     // Les fonctions suivantes seront utilisées dans chaque exercice.</span>
  
