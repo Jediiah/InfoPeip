@@ -31,7 +31,7 @@ function isupper($car){
             return TRUE;
         }
     }
-    return $car;
+    return FALSE;
 }
 
 
@@ -161,7 +161,7 @@ function ex_2($phrase, $decalageDemande, $affAlpha){
 /* ------------------------- Ecercice 3 ------------------------------ */ 
 
 function ex_3($phrase, $cleEntre, $affAlpha){
-    if(strlong($cleEntre)==26 and count_chars($cleEntre)==[]){
+    if(strlong($cleEntre)==26){
         $alphabetDecale = genere_alphabet($decalage = 0, $cle = $cleEntre);
         $phrase = remplace_lettres($phrase, $alphabetDecale);
         if($affAlpha){

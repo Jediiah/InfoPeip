@@ -45,5 +45,11 @@
 <span id="content">
     <p style="font-size: 16pt; font-weight: bold">
     Exercice 5 : <br>
-    
+    <p style="font-size: 12pt; font-weight= normal">
+    &nbsp; Pour décrypter un chiffre de Vigenere il faut tout d'abord trouver la longueur de la clé.
+    Pour faire cela on peut trouver des partie du texte répétées plusieurs fois qui correspondent à la longueur de la clé. <br>
+    &nbsp; Esuite on fait une analyse de fréquence, c'est à dire comparer la fréquence d'apparition des lettres dans le message 
+    à la fréquence d'apparition des lettres dans la langue du message, et ainsi emettre une hypothese sur les lettres composant la 
+    clé. Il est aussi possible de tester toutes les possibilités jusqu'à obtenir un résultat cohérent. 
+    </p>
 </p></span></body>

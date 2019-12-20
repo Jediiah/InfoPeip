@@ -89,7 +89,6 @@ Sinon{
     
             <?php
             
-            var_dump($decalage);
             $phrase2 = ex_2($phrase2, $decalage, $affAlpha);
             unset($affAlpha, $_POST["phrase2"], $_POST["AfficheAlphabet"]);
         }
