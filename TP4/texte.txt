@@ -1,0 +1,13 @@
+[SKIEUR]
+11
+FOO
+Bar
+France
+[/SKIEUR]
+
+[SKIEUR]
+2
+DIDIER
+Ramequin
+Allemagne
+[/SKIEUR]

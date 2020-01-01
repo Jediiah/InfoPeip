@@ -107,3 +107,19 @@ class Skieur
 
 }
 
+
+
+function parcours_depart($fichier){
+    if(is_string($fichier)){
+        try{
+            fopen($fichier, 'r');
+        }catch (Exeption $e){
+            echo "Erreur : ". $e->getMessage()."<br>";
+        }
+    }
+
+    while(!eof){
+
+    }
+}
+
