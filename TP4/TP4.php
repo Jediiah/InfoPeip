@@ -112,14 +112,33 @@ class Skieur
 function parcours_depart($fichier){
     if(is_string($fichier)){
         try{
-            fopen($fichier, 'r');
+            $fichier = fopen($fichier, 'r');
         }catch (Exeption $e){
             echo "Erreur : ". $e->getMessage()."<br>";
         }
     }
 
-    while(!eof){
-
+    $listeSkieurs = array();
+    while(!feof($fichier)){
+        $ligne = fgets($fichier);
+        if($ligne=="[SKIEUR]"){
+            $nvoSkieur = new Skieur;
+            for($i=0; $i<4; $i++){
+                switch($i){
+                    case 0:
+                        $nvoSkieur->dossard = $dossard = intval(fgets($fichier));
+                    case 1:
+                        $nvoSkieur->nom = fgets($fichier);
+                    case 2:
+                        $nvoSkieur->prenom = fgets($fichier);
+                    case 3:
+                        $nvoSkieur->pays = fgets($fichier);
+                }
+            }
+            $echgNvoSkieur = $nvoSkieur;
+            $listeSkieurs[$dossard] = $echgNvoSkieur;
+        }
     }
+    return $listeSkieurs;
 }
 
