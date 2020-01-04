@@ -163,13 +163,11 @@ $classement = cree_liste();
 $listeDepart = parcours_depart('texte.txt');
 #var_dump($listeDepart); echo "<br>";
 
-function ajout_skieur($dossard, $temps){
+function ajout_skieur($dossard, $temps, $listeDepart, $classement){
     /*
         Fonction qui gère l'arrivée d'un skieur et qui l'ajoute au classement 
         en fonction de son temps.
     */ 
-    global $listeDepart, $classement;
-
     $listeDepart[$dossard]->temps = $temps;
     $skieur = $listeDepart[$dossard];
     

@@ -27,7 +27,7 @@
                   
                   <td align="center"><a href="lecture_fichier.php">lecture_fichier</a></td>
                   
-                  <td align="center"><a href="Ex3.php">Exercice 3</a></td>
+                  <td align="center"><a href="arrive_skieur.php">arrivé_skieur</a></td>
                   
                   <td align="center"><a href="Ex4.php">Exercice 4</a></td>
                    
@@ -111,6 +111,61 @@ Fonction tablo_map($fonction, $tablo){
   }
   return $tabloRetour;
 }
+
+
+
+<span class='commentaire'>// Fonctions sur les listes chaînées </span>
+
+Classe Element{
+  $valeur;
+  NULL <- pSuiv;
+}
+
+
+Fonction cree_liste(){
+  new Element() <- $pTete;
+  'T' <- $pTete->valeur;
+  return $pTete;
+}
+
+
+Fonction recherch_liste($valeur, $pTete){
+  $pTete->pSuiv <- $pEncours;
+  Tant Que $pEncours != NULL{
+    Si $pEncours->valeur == $valeur{
+      return $pEncours;
+    }
+    $pEncours->pSuiv <- $pEncours;
+  }
+  return NULL;
+}
+
+
+Fonction ajout_debut($pNouv, $pTete){
+  $pTete->pSuiv <- $pNouv->pSuiv;
+  $pNouv <- $pTete->pSuiv;
+}
+
+
+Fonction ajout_apres($pNouv, $pPrec){
+  $pPrec->pSuiv <- $pNouv->pSuiv;
+  $pNouv <- $pPrec->pSuiv;
+}
+
+
+Fonction ajout_avant($valeur, $valAvant, $pTete){
+  new Element <- $pNouv;
+  $valeur <- $pNouv->valeur;
+  recherche_liste($valCherche, $pTete) <- $pPrec;
+
+  Si $pPrec == NULL {
+    ajout_debut($pNouv, $pTete);
+  }
+  Sinon{
+    ajout_apres($pNouv, $pPrec);
+  }
+}
+
 
 </pre> 
 </p></span></body>

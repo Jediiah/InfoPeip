@@ -73,11 +73,9 @@ function ajout_avant($val, $vrech, $pTete){
 
     if($pPrec==NULL){
         ajout_debut($pNouv, $pTete);
-        echo $val." Ajouté au début";
     }
     else{
         ajout_apres($pNouv,$pPrec);
-        echo $val." Ajouté après ".$vrech;
     }
 }
 
