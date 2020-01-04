@@ -1,6 +1,23 @@
 
 <?php
 
+// Toutes les fonctions de base 
+
+include('Fichiers/listeChaine.php');
+
+
+
+function exception_error_handler($severity, $message, $file, $line) {
+    if (!(error_reporting() & $severity)) {
+        // Ce code d'erreur n'est pas inclu dans error_reporting
+        return;
+    }
+    throw new ErrorException($message, 0, $severity, $file, $line);
+}
+set_error_handler("exception_error_handler");
+
+
+
 function strlong($texte){
     /*
         Idem strlen()
@@ -26,12 +43,12 @@ function sobstr($string, $carDepart, $long){
         Idem substr()
     */ 
     $souschaine = "";
-     for($i=0; $i<$long; $i++){
+    for($i=0; $i<$long; $i++){
         if(isset($string[$i+$carDepart])){
             $souschaine .= $string[$i+$carDepart];
         }
-     }
-     return $souschaine;
+    }
+    return $souschaine;
 }
 
 
@@ -76,11 +93,8 @@ function tablo_map($fctn, $tablo){
 }
 
 
-$str = "abcdef";
-$tablo = ['12', '13', '14', '15'];
-$tablo[6] = '18';
-var_dump($tablo);
 
+// Le vrai TP
 
 function compare_temps($temps1, $temps2){
     # on convertit les temps initialement au format str(mm : ss : cc)
@@ -99,42 +113,44 @@ function compare_temps($temps1, $temps2){
 
 class Skieur
 {
-    public $dossard = 0;
-    public $nom = "";
-    public $prenom = "";
-    public $pays = "";
-    public $temps = 0;
+    public $dossard;
+    public $nom;
+    public $prenom;
+    public $pays;
+    public $temps;
 
 }
 
 
 
 function parcours_depart($fichier){
+    /* 
+        Fonction qui parcours un fichier donnant topus les skieurs participant 
+        et qui renvoie une liste de ses skieurs. 
+    */
     if(is_string($fichier)){
         try{
             $fichier = fopen($fichier, 'r');
         }catch (Exeption $e){
             echo "Erreur : ". $e->getMessage()."<br>";
+            return NULL;
         }
     }
 
     $listeSkieurs = array();
+    $premiereLigne = TRUE;
     while(!feof($fichier)){
         $ligne = fgets($fichier);
-        if($ligne=="[SKIEUR]"){
+        if($premiereLigne){$echgval = $ligne; $ligneTest = $echgval; $premiereLigne = FALSE;}
+
+        if($ligne==$ligneTest){
             $nvoSkieur = new Skieur;
-            for($i=0; $i<4; $i++){
-                switch($i){
-                    case 0:
-                        $nvoSkieur->dossard = $dossard = intval(fgets($fichier));
-                    case 1:
-                        $nvoSkieur->nom = fgets($fichier);
-                    case 2:
-                        $nvoSkieur->prenom = fgets($fichier);
-                    case 3:
-                        $nvoSkieur->pays = fgets($fichier);
-                }
-            }
+
+            $nvoSkieur->dossard = $dossard = intval(fgets($fichier));     
+            $nvoSkieur->nom = fgets($fichier);     
+            $nvoSkieur->prenom = fgets($fichier);     
+            $nvoSkieur->pays = fgets($fichier);  
+    
             $echgNvoSkieur = $nvoSkieur;
             $listeSkieurs[$dossard] = $echgNvoSkieur;
         }
@@ -142,3 +158,47 @@ function parcours_depart($fichier){
     return $listeSkieurs;
 }
 
+
+$classement = cree_liste();
+$listeDepart = parcours_depart('texte.txt');
+#var_dump($listeDepart); echo "<br>";
+
+function ajout_skieur($dossard, $temps){
+    /*
+        Fonction qui gère l'arrivée d'un skieur et qui l'ajoute au classement 
+        en fonction de son temps.
+    */ 
+    global $listeDepart, $classement;
+
+    $listeDepart[$dossard]->temps = $temps;
+    $skieur = $listeDepart[$dossard];
+    
+    $pEncours = $classement->pSuiv;
+    if($pEncours==NULL){
+        $arriveSkieur = new Element;
+        $arriveSkieur->valeur = $skieur;
+        ajout_debut($arriveSkieur, $classement);
+    }
+    else{
+        while($pEncours!=NULL){
+            if(compare_temps($pEncours->valeur->temps, $skieur->temps)){
+                ajout_avant($skieur, $pEncours->valeur, $classement);
+                $pEncours = NULL;
+            }
+            elseif($pEncours->pSuiv==NULL){
+                $arriveSkieur = new Element;
+                $arriveSkieur->valeur = $skieur;
+                ajout_apres($arriveSkieur, $pEncours);
+                $pEncours = NULL;
+            }
+            else{
+                $pEncours = $pEncours->pSuiv;
+            }
+        }
+    }
+}
+
+ajout_skieur(11, '01 : 24 : 00');
+ajout_skieur(2, '01 : 45 : 03');
+
+#var_dump($classement);

@@ -1,0 +1,118 @@
+
+html {
+	margin: 0;
+	padding: 0;
+	overflow-y: scroll;
+}
+
+
+body {
+	width:1198px;
+	margin:0 auto;
+
+	background:#d6d4c4;
+	background-position:top center;
+	background-repeat: repeat-y;
+	background-attachment:scroll;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+
+	font-family: 'Open Sans', sans-serif;
+	color: #247069;
+	font-size: 11pt;
+	font-weight:400;
+}
+
+a:link {color: #3aa299; font-weight: bold; text-decoration: none;}
+a:visited {color: #3aa299; font-weight: bold; text-decoration: none;}
+a:active {color: #3aa299; font-weight: bold; text-decoration: none;}
+a:hover {color: #37bbb0; font-weight: bold; text-decoration: none;}
+
+
+
+pre {
+	background-color: #f5f5f2;
+	border-style: none;
+	border-radius: 5px;
+	padding: 15px;
+	margin: 10px;
+}
+
+td {
+	padding-left:15px;
+	padding-right: 15px;
+}
+
+textarea, input {
+	max-width: 500px;
+	max-height: 500px;
+
+	background-color: #f5f5f2;
+	border-style: none;
+	border-radius: 5px;
+	padding: 8px;
+	margin-left: 5px;
+}
+
+#header {
+	text-align: center;
+	margin-top: 28px;
+	margin-bottom: 28px;
+}
+
+#menu {
+	position:relative;
+	width: 100%;
+
+	background:#dedccc;
+	
+	font-family: 'OOfont';
+	color:#37bbb0;
+	font-weight:bold;
+	font-size:14pt;
+	text-align: center;
+	
+	margin-bottom:16px;
+	padding:10px;
+	border-radius: 5px;
+	
+	-moz-box-shadow:    0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    box-shadow:         0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+}
+
+#menu a:link    {color:#247069; font-weight:bold; text-decoration:none;}
+#menu a:active  {color:#247069; font-weight:bold; text-decoration:none;}
+#menu a:hover   {color:#37bbb0; font-weight:bold; text-decoration:none;}
+
+
+#content {
+	float: left;
+	width: 100%;
+	min-height: 2000px;
+
+	background:#dedccc;
+	
+	margin-bottom:16px;
+	padding:10px;
+	border-radius: 5px;
+	
+	-moz-box-shadow:    0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+    box-shadow:         0px 2px 16px 1px rgba(0, 0, 0, 0.15);
+	
+}
+
+.commentaire{
+	color: #3db4aa;
+}
+
+.rendu{
+	background-color: #f5f5f2;
+	border-style: none;
+	border-radius: 5px;
+	padding: 15px;
+	margin: 10px;
+}
