@@ -44,23 +44,46 @@
 
 <span id="content">
     <p style="font-size: 16pt; font-weight: bold">
-    lecture_fichier : <br>
+    arrivé_skieur : <br>
 
     <h4>Une liste chaînée me parrait être une structure de données optimale pour le classement car on peux 
-    insérer ou supprimer un élément facilement et 'appeler' un élément selon le critère voulu.</h4>
+    insérer ou supprimer un élément facilement et 'appeler' un élément selon le critère voulu (temps ou dossard).</h4>
 
     <pre>
-    [SKIEUR]
-    numero_dossard
-    NOM
-    Prénom
-    [/SKIEUR]
+Fonction ajout_skieur($dossard, $temps, $listeDepart, $classement){
+  <span class='commentaire'>/*
+  Fonction qui gère l'arrivée d'un skieur et qui l'ajoute au classement 
+        en fonction de son temps.
+  */
+  </span>
+  $temps <- $listeDepart[$dossard]->temps;
+  $listeDepart[$dossard] <- $skieur;
 
-    [SKIEUR]
-    . 
-    . 
-    . 
-    [/SKIEUR]</pre><br>
+  $classement->pSuiv <- $pEncours;
+  Si $pEncours == NULL {
+    new Element <- $arriveSkieur;
+    $skieur <- $arriveSkieur->valeur;
+    ajout_debut($arriveSkieur, $classement);
+  }
+  else{
+    Tant Que $pEncours != NULL {
+      Si compare_temps($pEncours->valeur->temps, $skieur->temps) {
+        ajout_avant($skieur, $pEncours->valeur, $classement);
+        NULL <- $pEncours;
+      }
+      Sinon Si $pEncours->pSuiv == NULL {
+        new Element <- $arriveSkieur;
+        $skieur <- $arriveSkieur->valeur;
+        ajout_apres($arriveSkieur, $pEncours);
+        NULL <- $pEncours;
+      }
+      Sinon {
+        $pEncours->pSuiv <- $pEncours;
+      }
+    }
+  }
+}
+    </pre><br>
 
 <?php
 include('TP4.php');

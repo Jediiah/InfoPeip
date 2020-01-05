@@ -52,6 +52,8 @@
     numero_dossard
     NOM
     Prénom
+    Pays
+    Temps
     [/SKIEUR]
 
     [SKIEUR]
