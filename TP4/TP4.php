@@ -159,8 +159,8 @@ function parcours_depart($fichier){
 }
 
 
-$classement = cree_liste();
-$listeDepart = parcours_depart('texte.txt');
+#$classement = cree_liste();
+#$listeDepart = parcours_depart('texte.txt');
 #var_dump($listeDepart); echo "<br>";
 
 function ajout_skieur($dossard, $temps, $listeDepart, $classement){
@@ -196,7 +196,7 @@ function ajout_skieur($dossard, $temps, $listeDepart, $classement){
     }
 }
 
-ajout_skieur(11, '01 : 24 : 00');
-ajout_skieur(2, '01 : 45 : 03');
+#ajout_skieur(11, '01 : 24 : 00', $listeDepart, $classement);
+#ajout_skieur(2, '01 : 45 : 03', $listeDepart, $classement);
 
 #var_dump($classement);

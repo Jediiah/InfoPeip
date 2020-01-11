@@ -88,11 +88,30 @@ Fonction ajout_skieur($dossard, $temps, $listeDepart, $classement){
 <?php
 include('TP4.php');
 
+$classement = cree_liste();
+$listeDepart = parcours_depart("texte.txt");
+
+echo "<p>Fichier original :</p><pre>";
+$fichier = file('texte.txt');
+foreach($fichier as $ligne){
+  echo $ligne;
+}
+echo "</pre><br> <p>Entrez le temps de chaque skieur :</p>";
+
+
+
 if(!isset($_POST['fichierSkieurs'])) {
   ?>
   
   <form method="POST">
-      <p>Liste des Skieurs au départ : <br><input type="file" name="fichierSkieurs" accept=".txt"></p>
+      <p>Skieur n°11 : <input class="temps" type="number" name="min11" min="0" max="60">:  
+                        <input class="temps" type="number" name="sec11" min="0" max="60">: 
+                        <input class="temps"  type="number" name="cent11" min="0" max="100"></p>
+
+        <p>Skieur n°2 : <input class="temps" type="number" name="min2" min="0" max="60">:  
+                        <input class="temps" type="number" name="sec2" min="0" max="60">: 
+                        <input class="temps"  type="number" name="cent2" min="0" max="100"></p>
+
       <p><input type="submit" value="Envoyer"></p>
   </form><br><br>
 
@@ -103,8 +122,15 @@ if(!isset($_POST['fichierSkieurs'])) {
       
       ?>
       <form method="POST">
-          <p>Liste des Skieurs au départ : <br><input type="file" name="fichierSkieurs" accept=".txt"></p>
-          <p><input type="submit" value="Envoyer"></p>
+      <p>Skieur n°11 : <input class="temps" type="number" name="min11" min="0" max="60">:  
+                        <input class="temps" type="number" name="sec11" min="0" max="60">: 
+                        <input class="temps"  type="number" name="cent11" min="0" max="100"></p>
+
+        <p>Skieur n°2 : <input class="temps" type="number" name="min2" min="0" max="60">:  
+                        <input class="temps" type="number" name="sec2" min="0" max="60">: 
+                        <input class="temps"  type="number" name="cent2" min="0" max="100"></p>
+
+      <p><input type="submit" value="Envoyer"></p>
       </form><br><br>
       <?php
 
