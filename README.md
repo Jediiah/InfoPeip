@@ -1,4 +1,5 @@
 # InfoPeip
 
 Il s'agir des travaux que j'ai effectués dans le cadre de ma prépa à Polytech Nancy.
-splitter.py est exemple de mes scripts.
+
+<a href="https://github.com/Jediiah/InfoPeip/edit/master/splitter.py">splitter.py</a> est exemple de mes scripts.
