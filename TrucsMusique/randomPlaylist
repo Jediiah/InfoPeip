@@ -1,0 +1,5 @@
+#!/bin/bash
+
+GENRE=$1
+
+dirMusic=""

@@ -2,7 +2,7 @@
 package tp.tictactoe; // Faite pas gaffe
 
 import java.util.Scanner;
-
+import java.io.IOException;
 
 public class Partie {
     
@@ -39,7 +39,7 @@ public class Partie {
 
     public String toString() {
         
-        String ReturnString = " ";//String.format("%"+this.Size*5+"s", "").replace(" ", "_") + "\n";
+        String ReturnString = " ";
         for (int i=0; i<this.Size; i++) {
             ReturnString += "   " + i;
         }
@@ -56,7 +56,7 @@ public class Partie {
                         break;
                     case -1: Sym = "O";
                         break;
-                    default: Sym = " ";
+                    default: Sym = "-";
                 }
                 ReturnString += String.format("|%2s", Sym) + String.format("%1s", ""); // alternative  ->  ReturnString += j + " ";
             }
@@ -71,26 +71,61 @@ public class Partie {
         }
         
         else {
-            boolean CoupJoue = false;
-            while (!CoupJoue) {
-                Scanner ScanPlay = new Scanner(System.in);
-                System.out.println("Joueur " + Joueur + " Veuillez saisir un nombre (x y)");
-                String ReponseStr = ScanPlay.nextLine();
+            Scanner ScanPlay = new Scanner(System.in);
+            System.out.println("Joueur " + Joueur + " Veuillez saisir un nombre (x y) (colonne ligne)");
+            String ReponseStr = ScanPlay.nextLine().replace(" ", "");
 
-                int Reponsex = Character.getNumericValue(ReponseStr.charAt(0));
-                int Reponsey = Character.getNumericValue(ReponseStr.charAt(2));
+            int Reponsex = Character.getNumericValue(ReponseStr.charAt(0));
+            int Reponsey = Character.getNumericValue(ReponseStr.charAt(1));
 
-                if (IsPositionCorrect(Reponsex, Reponsey)) {
-                    this.PlateauInt[Reponsey][Reponsex] = Joueur;
-                    CoupJoue = true;
-                }
-                else {
-                    System.out.println("Cette position n'est pas correcte, veuillez réessayer.");
-                }   
+            if (IsPositionCorrect(Reponsex, Reponsey)) {
+                this.PlateauInt[Reponsey][Reponsex] = Joueur;
             }
+            else {
+                System.out.println("Cette position n'est pas correcte, veuillez réessayer.");
+                TourDeJeu(Joueur);
+            }    
         } 
     }
     
+    public int[] TourIA(int depth, int Joueur) {
+        int[] best = new int[] {-1, -1, 100}; // Joueur humain
+        if (Joueur == -1) {
+            best = new int[] {-1, -1, -100}; // IA
+        }
+
+
+        if (depth == 0 || this.EtatPartie() != 3) {
+            int score = this.EtatPartie();
+            return(new int[] {-1, -1, score});
+        }
+
+        for (int y=0; y<this.Size; y++) {
+            for (int x=0; x<this.Size; x++) {
+                if (this.PlateauInt[y][x] != 0) {
+                    continue;
+                }
+
+                this.PlateauInt[y][x] = Joueur;
+                int[] score = this.TourIA(depth-1, -Joueur);
+                this.PlateauInt[y][x] = 0;
+                score[0] = y; score[1] = x;
+
+                if (Joueur == -1) {
+                    if (score[2] > best[2]) {
+                        best = score;
+                    }
+                }
+                else {
+                    if (score[2] < best[2]) {
+                        best = score;
+                    }
+                }
+            }
+        }
+        return(best);
+    }
+
     public int EtatPartie(){
         // rend le numéro du joueur gangnant s'il y en a un, 3 si la partie est bloquée, 0 si tout va bien.
         // Test de gagnat sur les lignes
@@ -139,26 +174,25 @@ public class Partie {
             }
         }
         if (Nbr_Vide == 0) {
-            return(3);
+            return(0);
         }
 
         // Tout va bien
-        return(0);
+        return(3);
     }
 
     public boolean IsPositionCorrect(int PosX, int PosY) {
         // PosX et PosY sont les positions x y courament utilisées le plateau utlise donc Plateau[PosY][PosX]
-        if (PosX >= this.Size || PosY >= this.Size) {
+        if (this.PlateauInt[PosY][PosX] != 0) {
             return(false);
         }
-        else if (this.PlateauInt[PosY][PosX] != 0) {
+        else if (PosX >= this.Size || PosY >= this.Size || PosX < 0 || PosY < 0) {
             return(false);
         }
-
         return(true);
     }
-
-    public static void JouerUnePartie() {
+ 
+    public static void JouerUnePartie() throws IOException, InterruptedException  {
         boolean Jouer = true;
         while (Jouer) {
             //Choix des paramètres
@@ -186,6 +220,8 @@ public class Partie {
             while (!Termine) {
                 TourJoueur = TourJoueur*-1;
 
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();  
                 System.out.println(LaPartie.toString());
 
                 LaPartie.TourDeJeu(TourJoueur);
@@ -195,7 +231,7 @@ public class Partie {
                     System.out.println("Le Joueur " + EtatPartie + " à gagné.");
                     Termine = true;
                 }
-                else if (EtatPartie == 3) {
+                else if (EtatPartie == 0) {
                     System.out.println("La partie est bloquée, match nul.");
                     Termine = true;
                 }
