@@ -159,10 +159,6 @@ public class Matrice {
     }
 
     public void TestRun() {
-        //Tableau TabloTest = new Tableau(10);
-        //System.out.println(TabloTest.toString());
-        //System.out.println(TabloTest.MaxNb());
-
         Matrice MaMatrice = new Matrice(5);
         System.out.println("Création d'une matrice carrée 5x5 : ");
         System.out.println(MaMatrice.toString());
@@ -189,19 +185,5 @@ public class Matrice {
         System.out.println("Multiplication de la première matrice 5x5 et de la troisième 3x5 : ");
         Matrice MatMultiple = Multiplication(MaMatrice, MatTest);
         System.out.println(MatMultiple.toString());
-
-        /*
-        int[][] tablotest = new int[][]{{1, 2, 3}, {4, 5, 6}};
-        int[][] tablocopie = Arrays.copyOf(tablotest, tablotest.length);
-
-        System.out.println(Arrays.deepToString(tablotest));
-        System.out.println(Arrays.deepToString(tablocopie));
-
-        //int i = 2, j = 12;
-        //boolean isTest = Arrays.deepEquals(tablotest, tablocopie);
-        //System.out.println(i + " " + j );
-        //System.out.println(Arrays.deepToString(tablotest));
-        //System.out.println(Arrays.deepToString(tablocopie));
-        */
     }
 }

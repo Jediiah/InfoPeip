@@ -11,19 +11,21 @@ import tp.tictactoe.*;
 public class Main {
     
     public static void main(String[] args) throws IOException, InterruptedException {
-        //TestTP1 TestTp1 = new TestTP1();
-        //TestTP2 TestTp2 = new TestTP2();
+        Scanner RepMain = new Scanner(System.in);
+        System.out.println("Voulez-vous voir les tests des TP 1 et 2 ? (Y/N)");
+        String RepTP = RepMain.nextLine();
 
-        //Personne TestPersonne = new Personne("mai", 28, 2001, "Zach");
-        //TestPersonne.TestRun();
+        if (RepTP.equals("y") || RepTP.equals("Y")) {
+            Personne TestPersonne = new Personne("janvier", 1, 2021, "TEST");
+            TestPersonne.TestRun();
 
-        //Matrice TestMatrice = new Matrice(5);
-        //TestMatrice.TestRun()
+            Matrice TestMatrice = new Matrice(1);
+            TestMatrice.TestRun();
+        }
 
         Partie TestPartie = new Partie();
-        TestPartie.JouerUnePartie();
-        //System.out.println(TestPartie.toString());
-       
-      
+        TestPartie.JouerUnePartie();    
+
+        RepMain.close();
     }
 }

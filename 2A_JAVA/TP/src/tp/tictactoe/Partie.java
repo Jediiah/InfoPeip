@@ -67,7 +67,17 @@ public class Partie {
 
     public void TourDeJeu(int Joueur) {
         if (this.Mode == 1 && Joueur == -1) {
-            // MiniMax bientôt
+            int depth = 0;
+            for (int[] Ligne: this.PlateauInt) {
+                for (int Case: Ligne) {
+                    if (Case == 0) {
+                        depth += 1;
+                    }
+                }
+            }
+            System.out.println(depth);
+            int[] BestMove = TourIA(depth, Joueur);
+            this.PlateauInt[BestMove[0]][BestMove[1]] = Joueur;
         }
         
         else {
@@ -75,25 +85,29 @@ public class Partie {
             System.out.println("Joueur " + Joueur + " Veuillez saisir un nombre (x y) (colonne ligne)");
             String ReponseStr = ScanPlay.nextLine().replace(" ", "");
 
-            int Reponsex = Character.getNumericValue(ReponseStr.charAt(0));
-            int Reponsey = Character.getNumericValue(ReponseStr.charAt(1));
-
-            if (IsPositionCorrect(Reponsex, Reponsey)) {
-                this.PlateauInt[Reponsey][Reponsex] = Joueur;
+            if (ReponseStr.length() == 2) {
+                int Reponsex = Character.getNumericValue(ReponseStr.charAt(0));
+                int Reponsey = Character.getNumericValue(ReponseStr.charAt(1));
+                if (IsPositionCorrect(Reponsex, Reponsey)) {
+                    this.PlateauInt[Reponsey][Reponsex] = Joueur;
+                }
+                else {
+                    System.out.println("Cette position n'est pas correcte, veuillez réessayer.");
+                    TourDeJeu(Joueur);
+                }
             }
             else {
-                System.out.println("Cette position n'est pas correcte, veuillez réessayer.");
+                System.out.println("Erreur de frappe, veuillez réessayer.");
                 TourDeJeu(Joueur);
             }    
         } 
     }
     
     public int[] TourIA(int depth, int Joueur) {
-        int[] best = new int[] {-1, -1, 100}; // Joueur humain
-        if (Joueur == -1) {
-            best = new int[] {-1, -1, -100}; // IA
+        int[] best = new int[] {-1, -1, -100}; // IA
+        if (Joueur == 1) {
+            best = new int[] {-1, -1, 100}; // Joueur humain
         }
-
 
         if (depth == 0 || this.EtatPartie() != 3) {
             int score = this.EtatPartie();
@@ -107,18 +121,27 @@ public class Partie {
                 }
 
                 this.PlateauInt[y][x] = Joueur;
-                int[] score = this.TourIA(depth-1, -Joueur);
+                int[] score = TourIA(depth-1, -Joueur);
                 this.PlateauInt[y][x] = 0;
                 score[0] = y; score[1] = x;
+                System.out.println(score);
 
                 if (Joueur == -1) {
                     if (score[2] > best[2]) {
                         best = score;
+                        if (best[2] == 1) {
+                            System.out.println("break***********************************************************");
+                            break;
+                        }
                     }
                 }
                 else {
                     if (score[2] < best[2]) {
                         best = score;
+                        if (best[2] == -1) {
+                            System.out.println("break----------------------------------------------------------");
+                            break;
+                        }
                     }
                 }
             }
@@ -183,77 +206,72 @@ public class Partie {
 
     public boolean IsPositionCorrect(int PosX, int PosY) {
         // PosX et PosY sont les positions x y courament utilisées le plateau utlise donc Plateau[PosY][PosX]
-        if (this.PlateauInt[PosY][PosX] != 0) {
+        if (PosX >= this.Size || PosY >= this.Size || PosX < 0 || PosY < 0) {
             return(false);
         }
-        else if (PosX >= this.Size || PosY >= this.Size || PosX < 0 || PosY < 0) {
+        else if (this.PlateauInt[PosY][PosX] != 0) {
             return(false);
         }
         return(true);
     }
  
     public static void JouerUnePartie() throws IOException, InterruptedException  {
-        boolean Jouer = true;
-        while (Jouer) {
-            //Choix des paramètres
-            Scanner InitPartie = new Scanner(System.in);
-            // Choix de la taille
-            System.out.println("Entrez la taille du plateau : 3-10");
-            int Taille = InitPartie.nextInt();
-            Partie LaPartie = new Partie(Taille);
-            // Choix du mode de jeu
-            System.out.println("Souhaitez-vous jouers contre un autre joueur (0) ou contre l'ordinateur (1)");
-            int Mode = InitPartie.nextInt();
-            if (Mode == 0 || Mode == 1) {
-                LaPartie.Mode = Mode;
-
-            }
-            else {
-                System.out.println("Le mode choisit n'existe pas.");
-
-                break;
-            }
+        //Choix des paramètres
+        Scanner InitPartie = new Scanner(System.in);
+        // Choix de la taille
+        System.out.println("Entrez la taille du plateau : 3-10");
+        int Taille = InitPartie.nextInt();
+        Partie LaPartie = new Partie(Taille);
+        // Choix du mode de jeu
+        System.out.println("Souhaitez-vous jouer contre un autre joueur (0) ou contre l'ordinateur (1)");
+        int Mode = InitPartie.nextInt();
+        if (Mode == 0 || Mode == 1) {
+            LaPartie.Mode = Mode;
+        }
+        else {
+            System.out.println("Le mode choisit n'existe pas.");
+            JouerUnePartie();
+            return;
+        }
             
-            // Commencement de la partie
-            boolean Termine = false;
-            int TourJoueur = -1;
-            while (!Termine) {
-                TourJoueur = TourJoueur*-1;
+        // Commencement de la partie
+        boolean Termine = false;
+        int TourJoueur = -1; // Random -1 ou 1 bientôt
+        while (!Termine) {
+            TourJoueur = TourJoueur*-1;
 
-                System.out.print("\033[H\033[2J");  
-                System.out.flush();  
-                System.out.println(LaPartie.toString());
-
-                LaPartie.TourDeJeu(TourJoueur);
-                int EtatPartie = LaPartie.EtatPartie();
-
-                if (EtatPartie == 1 || EtatPartie == -1) {
-                    System.out.println("Le Joueur " + EtatPartie + " à gagné.");
-                    Termine = true;
-                }
-                else if (EtatPartie == 0) {
-                    System.out.println("La partie est bloquée, match nul.");
-                    Termine = true;
-                }
-            }
-
+            // Clear les terminaux Unix (en calaboration avec StackOverflow)
+            System.out.print("\033[H\033[2J");  
+            System.out.flush();  
             System.out.println(LaPartie.toString());
-            // Partie Terminée, on recommence ?
-            Scanner ContinuePartie = new Scanner(System.in);
-            System.out.println("Voulez-vous refaire une partie ? Y/N");
-            String Reponse = ContinuePartie.nextLine();
 
-            if (Reponse.equals("y") || Reponse.equals("Y")) {
-                System.out.println("Ok, c'est repartis.");;
+            LaPartie.TourDeJeu(TourJoueur);
+            int EtatPartie = LaPartie.EtatPartie();
+
+            if (EtatPartie == 1 || EtatPartie == -1) {
+                System.out.println("Le Joueur " + EtatPartie + " à gagné.");
+                Termine = true;
             }
-            else {
-                System.out.println("A plus.");
-                Jouer = false;
-                ContinuePartie.close();
+            else if (EtatPartie == 0) {
+                System.out.println("La partie est bloquée, match nul.");
+                Termine = true;
             }
-            
+        }
+
+        System.out.println(LaPartie.toString());
+        // Partie Terminée, on recommence ?
+        Scanner ContinuePartie = new Scanner(System.in);
+        System.out.println("Voulez-vous refaire une partie ? Y/N");
+        String Reponse = ContinuePartie.nextLine();
+
+        if (Reponse.equals("y") || Reponse.equals("Y")) {
+            System.out.println("Ok, c'est repartis.");
+            JouerUnePartie();
+        }
+        else {
+            System.out.println("A plus.");
+            ContinuePartie.close();
         }
     }
-
 
 }
