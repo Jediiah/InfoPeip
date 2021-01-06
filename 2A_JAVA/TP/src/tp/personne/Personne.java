@@ -40,8 +40,6 @@ public class Personne {
 		System.out.println(Reponse);
 
 		if (Reponse.equals("y") || Reponse.equals("Y")) {
-			ScanReponse.close();
-			
 			Scanner ScanNom = new Scanner(System.in);
 		
 			System.out.println("Entrez votre nom");
@@ -58,8 +56,6 @@ public class Personne {
 		
 			Personne Lui = new Personne(MoisNaissance, JourNaissance, AnneeNaissance, Nom);
 			System.out.println("Vous êtes : " + Lui.toSrting());
-
-			ScanNom.close();
 		}
 		else {
 			System.out.println("Bonne journée");

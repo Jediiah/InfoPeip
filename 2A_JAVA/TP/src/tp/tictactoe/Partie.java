@@ -38,7 +38,6 @@ public class Partie {
     }
 
     public String toString() {
-        
         String ReturnString = " ";
         for (int i=0; i<this.Size; i++) {
             ReturnString += "   " + i;

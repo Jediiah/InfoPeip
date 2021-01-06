@@ -1,4 +1,4 @@
-package tp.main;
+package tp;
 
 import java.util.Scanner;
 import java.io.IOException;
@@ -16,13 +16,16 @@ public class Main {
         String RepTP = RepMain.nextLine();
 
         if (RepTP.equals("y") || RepTP.equals("Y")) {
+            System.out.println("\n" + "TP1 - Personnes *****************************************" + "\n");
             Personne TestPersonne = new Personne("janvier", 1, 2021, "TEST");
             TestPersonne.TestRun();
 
+            System.out.println("\n" + "TP3 - Matrices *****************************************" + "\n");
             Matrice TestMatrice = new Matrice(1);
             TestMatrice.TestRun();
         }
 
+        System.out.println("\n" + "TP2 - TicTacToe *****************************************" + "\n");
         Partie TestPartie = new Partie();
         TestPartie.JouerUnePartie();    
 
