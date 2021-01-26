@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class CoffreAuTresor extends EvenementAmicale {
 	
 	public void CoffreAuTresor() {
-		this.Contenu = "Vous tombez sur un coffre au tr�sor sertit de diamant qui pourrait contenir un tr�sor d'une valeur inestimable!!! Mais il vous faut faire un choix, voulez vous l'ouvrir au risque de tomber sur un mimic ou pr�ferez vous laisser le contenu de ce coffre tranquille?(oui/non)";
+		this.Contenu = "Vous tombez sur un coffre au trésor sertit de diamant qui pourrait contenir un trésor d'une valeur inestimable!!! Mais il vous faut faire un choix, voulez vous l'ouvrir au risque de tomber sur un mimic ou préferez vous laisser le contenu de ce coffre tranquille?(oui/non)";
 		Scanner Coffre = new Scanner(System.in);
 		String Rep = Coffre.nextLine();
 		switch(Rep) {

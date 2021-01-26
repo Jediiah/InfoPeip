@@ -4,13 +4,13 @@ public abstract class Personnage implements PersonnageIntf {
 	protected int Vie;
 	protected int VieActuel;
 	protected int Degats;
-	protected int Tranchant;
+	//protected int Tranchant;
 	protected String NomDeLaClasse;
-	protected int Feu;
-	protected int Foudre;
-	protected int Brisearmure;
-	protected int Saignement;
-	protected int Malediction;
+	//protected int Feu;
+	//protected int Foudre;
+	//protected int Brisearmure;
+	//protected int Saignement;
+	//protected int Malediction;
 	protected int Armure;
 	protected int Esquive;
 	
@@ -53,9 +53,7 @@ public abstract class Personnage implements PersonnageIntf {
 		if (this.VieActuel < 1) {
 			return false;
 		}
-		else {
-			return true;
-		}
+		return true;
 	}
 
 }
