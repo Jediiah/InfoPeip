@@ -1,21 +1,15 @@
 package tp_jdr.Personnage;
 
 public abstract class Personnage implements PersonnageIntf {
-	protected int Vie;
+	protected int VieMax;
 	protected int VieActuel;
 	protected int Degats;
-	//protected int Tranchant;
-	protected String NomDeLaClasse;
-	//protected int Feu;
-	//protected int Foudre;
-	//protected int Brisearmure;
-	//protected int Saignement;
-	//protected int Malediction;
-	protected int Armure;
+	protected int Hydratation;
+	protected int TauxAlcool;
 	protected int Esquive;
 	
 	public void SubirAttaque(Personnage attaquant) {
-		int DegatRecus = attaquant.Degats - this.Armure;
+		int DegatRecus = attaquant.Degats;
 		if (DegatRecus < 0) {
 			DegatRecus = 0;
 		}
@@ -32,17 +26,28 @@ public abstract class Personnage implements PersonnageIntf {
 			System.out.println("L'attaque est esquivée !");
 		}
 	}
+
+	public void Boire(int TauxAlcoolBoisson) {
+		this.TauxAlcool += TauxAlcoolBoisson;
+		this.Hydratation *= 1 + TauxAlcoolBoisson;
+		if (this.Hydratation > 100); this.Hydratation = 100;
+		this.Esquive *= 1 - TauxAlcoolBoisson;
+	}
 	
-	public int getVie() {
-		return this.Vie;
+	public int getVieMax() {
+		return this.VieMax;
 	}
 	
 	public int getDegats() {
 		return this.Degats;
 	}
 	
-	public int getArmure() {
-		return this.Armure;
+	public int getHydratation() {
+		return this.Hydratation;
+	}
+	
+	public int getTauxAlcool() {
+		return this.TauxAlcool;
 	}
 	
 	public int getEsquive() {
@@ -50,7 +55,7 @@ public abstract class Personnage implements PersonnageIntf {
 	}
 	
 	public boolean isAlive() {
-		if (this.VieActuel < 1) {
+		if (this.VieActuel < 1 || this.TauxAlcool > 1) {
 			return false;
 		}
 		return true;

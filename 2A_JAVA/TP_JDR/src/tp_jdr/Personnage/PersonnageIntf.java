@@ -9,13 +9,10 @@ public interface PersonnageIntf {
 	public void EsquiverAttaque(Personnage attaquant);
 	
 	//Retourne la vie d'un personnage 
-	public int getVie();
+	public int getVieMax();
 	
 	//Retourne les degats infliges par un personnage
 	public int getDegats();
-	
-	//Retourne l'armure d'un personnage 
-	public int getArmure();
 	
 	//Retourne l'esquive d'un personnage en %
 	public int getEsquive();
