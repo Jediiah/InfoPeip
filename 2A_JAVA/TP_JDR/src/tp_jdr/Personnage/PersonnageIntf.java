@@ -16,6 +16,8 @@ public interface PersonnageIntf {
 	
 	//Retourne l'esquive d'un personnage en %
 	public int getEsquive();
+
+	public String getMeteo();
 	
 	//Retourne True si le personnage est vivant
 	public boolean isAlive();

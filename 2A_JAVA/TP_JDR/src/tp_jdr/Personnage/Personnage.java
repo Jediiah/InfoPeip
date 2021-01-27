@@ -5,8 +5,12 @@ public abstract class Personnage implements PersonnageIntf {
 	protected int VieActuel;
 	protected int Degats;
 	protected int Hydratation;
-	protected int TauxAlcool;
+	protected double TauxAlcool;
 	protected int Esquive;
+	protected String LieuPrefere;
+	protected String LieuActuel;
+	protected String Meteo;
+	protected double BuffEnvironnement;
 	
 	public void SubirAttaque(Personnage attaquant) {
 		int DegatRecus = attaquant.Degats;
@@ -27,13 +31,88 @@ public abstract class Personnage implements PersonnageIntf {
 		}
 	}
 
-	public void Boire(int TauxAlcoolBoisson) {
+	public void Boire(double TauxAlcoolBoisson) {
 		this.TauxAlcool += TauxAlcoolBoisson;
-		this.Hydratation *= 1 + TauxAlcoolBoisson;
+		this.Hydratation = (int)(this.Hydratation * (1 + TauxAlcoolBoisson));
 		if (this.Hydratation > 100); this.Hydratation = 100;
-		this.Esquive *= 1 - TauxAlcoolBoisson;
+		this.Esquive = (int)(this.Esquive * (1 - TauxAlcoolBoisson));
+	}
+
+	public void ChgmtLieu(String LieuSuivant) {
+		this.LieuActuel = LieuSuivant;
+		if(this.LieuActuel.equals(this.LieuPrefere)) {
+			this.ChgmtMeteo("Normale");
+		}
+		// On actualise les buffs s'il pleu et qu'on arrive dans un lieu couvert
+		else if (this.Meteo.equals("Pluie") && this.IsCouvert(LieuSuivant)) {
+			this.ChgmtMeteo("Normale");
+		}
+	}
+
+	public void ChgmtMeteo(String MeteoSuivante) {
+		this.CalculBuff(this.Meteo, MeteoSuivante);
+		this.Meteo = MeteoSuivante;
+	}
+
+	private void CalculBuff(String MeteoActuelle, String MeteoSuivante) {
+		if(MeteoActuelle.equals("Normale")) {
+			if(MeteoSuivante.equals("Pluie")) {
+				this.Esquive = (int)(this.Esquive * 0.1);
+			}
+			else if(MeteoSuivante.equals("Canicule")) {
+				this.TauxAlcool *= 1.4;
+				this.Hydratation = (int)(this.Hydratation * 0.8);
+			}
+		}
+		else if(MeteoActuelle.equals("Canicule")) {
+			if(MeteoSuivante.equals("Pluie")) {
+				this.CalculBuff(MeteoActuelle, "Normale");
+				this.CalculBuff("Normale", MeteoSuivante);
+			}
+			else if(MeteoSuivante.equals("Normale")) {
+				this.TauxAlcool *= 0.8;
+			}
+		}
+		else if(MeteoActuelle.equals("Pluie")) {
+			if(MeteoSuivante.equals("Canicule")) {
+				this.CalculBuff(MeteoActuelle, "Normale");
+				this.CalculBuff("Normale", MeteoSuivante);
+			}
+			else if(MeteoSuivante.equals("Normale")) {
+				this.Esquive = (int)(this.Esquive * 1.6);
+			}
+		}
+	}
+
+	public void Heal(int MontantHeal) {
+		this.VieActuel += MontantHeal;
+		if(this.VieActuel > this.VieMax); this.VieActuel = this.VieMax;
+	}
+
+	public void AugmenteVieMax(int MontantAugmentation) {
+		this.VieMax += MontantAugmentation;
+	}
+
+	public void AugmenteVie(int MontantAugmentation) {
+		this.VieActuel += MontantAugmentation;
+	}
+
+	public void AugmenteHydrate(int MontantAugmentation) {
+		this.Hydratation += MontantAugmentation;
+	}
+
+	public void Dormir() {
+		this.TauxAlcool *= 0.5;
+		this.Heal(20);
 	}
 	
+	public boolean IsCouvert(String Lieu) {
+		if (Lieu.equals("Temple") || Lieu.equals("Altar") || Lieu.equals("Valley")) {
+			return(true);
+		}
+		return(false);
+	}
+
 	public int getVieMax() {
 		return this.VieMax;
 	}
@@ -46,16 +125,20 @@ public abstract class Personnage implements PersonnageIntf {
 		return this.Hydratation;
 	}
 	
-	public int getTauxAlcool() {
+	public double getTauxAlcool() {
 		return this.TauxAlcool;
 	}
 	
 	public int getEsquive() {
 		return this.Esquive;
 	}
+
+	public String getMeteo() {
+		return(this.Meteo);
+	}
 	
 	public boolean isAlive() {
-		if (this.VieActuel < 1 || this.TauxAlcool > 1) {
+		if (this.VieActuel < 1 || this.TauxAlcool > 1 || this.Hydratation < 1) {
 			return false;
 		}
 		return true;
