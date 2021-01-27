@@ -6,7 +6,6 @@ public class Concert extends Evenement {
     
     public Concert(Evenement Suite) {
         this.Suite = Suite;
-        this.EvenementIntermediaire = true;
 
         int Scene = (int)(Math.random() * 5);
         switch (Scene) {
