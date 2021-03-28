@@ -83,6 +83,15 @@ public class TP1 {
         return(new int[]{SommeMax, IndiceGauche, IndiceDroite});
     }
 
+    private static int[] SousTabRec(int[] tab, int deb, int fin) {
+
+        if(deb==fin) {
+            return(new int[]{tab[deb], deb, deb});
+        }
+
+        
+    }
+
     public static int[] RandomTab(int Taille) {
         // Créer une "liste" de n (Taille) nombres compris entre 
         // -100 et 100 exclus, puis convertis la "liste" en tableau.
