@@ -84,13 +84,56 @@ public class TP1 {
     }
 
     private static int[] SousTabRec(int[] tab, int deb, int fin) {
-
         if(deb==fin) {
             return(new int[]{tab[deb], deb, deb});
         }
 
-        
+        int mil = (int) (fin-deb)/2 + deb;
+        System.out.println(deb + "  " + mil);
+
+        int[] SommeGauche = SousTabRec(tab, deb, mil);
+        int[] SommeDroite = SousTabRec(tab, mil+1, fin);
+        int[] SommeMil = SousTabMil(tab, deb, fin);
+
+        // Retourne la somme maximale et les indices correspondants
+        if(SommeMil[0] > SommeGauche[0]) {
+            if(SommeMil[0] > SommeDroite[0]) {
+                return(SommeMil);
+            }
+            return(SommeDroite);
+        }
+        else if(SommeGauche[0] >= SommeDroite[0]) {
+            return(SommeGauche);
+        }
+        return(SommeDroite);
     }
+
+    private static int[] SousTabBonus(int[] tab) {
+        int SommeIter = 0;
+        int SommeMax = tab[0];
+        int IndiceGauche = 0;
+        int IndiceDroite=0;
+
+        int x = 0;
+
+        for(int y=0; y<tab.length; y++) {
+            if(SommeIter < 0) {
+                SommeIter = 0;
+                x = y;
+            }
+
+            SommeIter += tab[y];
+
+            if(SommeIter > SommeMax) {
+                SommeMax = SommeIter;
+                IndiceGauche = x;
+                IndiceDroite = y;
+            }
+        }
+
+        return(new int[]{SommeMax, IndiceGauche, IndiceDroite});
+    }
+
 
     public static int[] RandomTab(int Taille) {
         // Créer une "liste" de n (Taille) nombres compris entre 
@@ -109,6 +152,6 @@ public class TP1 {
     public static void main(String[] args) {
         int[] tab = new int[]{13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
         displayTab(tab);
-        displayTab(SousTabMil(tab, 0, 1));
+        displayTab(SousTabBonus(tab));
     }
 }
