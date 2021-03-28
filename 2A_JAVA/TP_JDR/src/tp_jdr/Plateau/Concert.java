@@ -4,9 +4,7 @@ import tp_jdr.Personnage.PersonnageJoueur;
 
 public class Concert extends Evenement {
     
-    public Concert(Evenement Suite) {
-        this.Suite = Suite;
-
+    public Concert() {
         int Scene = (int)(Math.random() * 5);
         switch (Scene) {
             case 1:
@@ -27,7 +25,23 @@ public class Concert extends Evenement {
         }
     }
 
-    public void Resultat(PersonnageJoueur PJ) {
-
+    public void Resultat(PersonnageJoueur MonPerso) {
+        switch (this.Contenu) {
+            case "Mainstage":
+                MonPerso.ChgmtLieu("Mainstage");
+                break;
+            case "Warzone":
+                MonPerso.ChgmtLieu("Warzone");
+                break;
+            case "Altar":
+                MonPerso.ChgmtLieu("Altar");
+                break;
+            case "Temple":
+                MonPerso.ChgmtLieu("Temple");
+                break;
+            default:
+                MonPerso.ChgmtLieu("Valley");
+                break;
+        }
     }
 }

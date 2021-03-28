@@ -7,6 +7,4 @@ public interface EvenementIntf {
 	public void Resultat(PersonnageJoueur PJ);
 
 	public String getContenu();
-
-	public Evenement getSuite();
 }

@@ -7,7 +7,25 @@ public interface PersonnageIntf {
 	
 	//Essaye d'esquiver l'attaque d'un autre personnage
 	public void EsquiverAttaque(Personnage attaquant);
+
+	public void AugmenteVieMax(int MontantAugmentation);
+
+	public void AugmenteVie(int MontantAugmentation);
+
+	public void AugmenteHydrate(int MontantAugmentation);
 	
+	public void Dormir();
+
+	public boolean IsCouvert(String Lieu);
+
+	public int getHydratation();
+
+	public double getTauxAlcool();
+
+	public String getNomClasse();
+
+	public int getVieActuel();
+
 	//Retourne la vie d'un personnage 
 	public int getVieMax();
 	
