@@ -2,15 +2,7 @@ import java.util.stream.IntStream;
 import java.util.Arrays;
 import java.util.Random;
 
-public class TP1 {
-
-    /*
-    TP1 Informatique
-
-    Zacharie 
-    LALLEMAND-BIRCK
-    TD5
-    */
+public class TP1_LALLEMAND_BIRCK {
 
     public static int[] SousTabMaxNaif(int[] tab) {
         /*
